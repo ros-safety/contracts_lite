@@ -15,7 +15,7 @@
 #include <limits>
 #include <string>
 
-#include "contracts_lite/to_string.hpp"
+#include "contracts_lite/contract_types.hpp"
 #include "gtest/gtest.h"
 
 /**
