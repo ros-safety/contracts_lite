@@ -40,8 +40,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 
   # Unit tests
-  ament_add_gtest(test_${PROJECT_NAME} test/gtest_main.cpp test/test_contracts.cpp)
-  target_link_libraries(test_${PROJECT_NAME} ${PROJECT_NAME})
+  ament_add_gtest(test_to_string test/gtest_main.cpp test/test_to_string.cpp)
+  target_link_libraries(test_to_string ${PROJECT_NAME})
 
 endif()
 

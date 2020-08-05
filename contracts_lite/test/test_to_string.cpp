@@ -15,22 +15,8 @@
 #include <limits>
 #include <string>
 
-#include "contracts_lite/failure_status.hpp"
 #include "contracts_lite/to_string.hpp"
 #include "gtest/gtest.h"
-
-/**
- * @brief An object of type FailureStatus should always cast to the boolean
- * value of the 'is_failing' parameter.
- */
-TEST(contracts, FailureStatus) {
-  namespace ac = autoware::contracts;
-  constexpr auto IS_FAILING = true;
-  EXPECT_TRUE(ac::FailureStatus("", IS_FAILING));
-  EXPECT_TRUE(ac::FailureStatus("test message", IS_FAILING));
-  EXPECT_FALSE(ac::FailureStatus("", !IS_FAILING));
-  EXPECT_FALSE(ac::FailureStatus("test message", !IS_FAILING));
-}
 
 /**
  * @brief gcc_7x_to_string_fix should be equivalent in functionality to

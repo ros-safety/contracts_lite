@@ -32,21 +32,7 @@ class FailureStatus {
  public:
   FailureStatus(std::string comment, bool is_failing)
       : comment(std::move(comment)), is_failing(is_failing) {}
-
-  /**
-   * @brief Conversion function to enable casting Status objects to bool values.
-   * @return True iff the object indicates failure.
-   */
-  operator bool() const { return is_failing; }
-
-  /**
-   * @brief Human readable comment about nature of failure.
-   * @note This only applies when the object casts to 'true'; else it should be
-   * disregarded.
-   */
   std::string comment;
-
- private:
   const bool is_failing;
 };
 

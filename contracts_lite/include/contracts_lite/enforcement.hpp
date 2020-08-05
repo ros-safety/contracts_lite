@@ -68,10 +68,13 @@
  * @brief Invokes violation handler if contract_check arg evaluates to `true`
  * @note INTERNAL USE ONLY
  */
-#define ENFORCE_CONTRACT(contract_check)                    \
-  if (auto is_failing = (contract_check)) {                 \
-    CONTRACT_VIOLATION_HANDLER(                             \
-        CONTRACT_VIOLATION(std::move(is_failing.comment))); \
+#define ENFORCE_CONTRACT(contract_check)                 \
+  {                                                      \
+    auto check = (contract_check);                       \
+    if (check.is_failing) {                              \
+      CONTRACT_VIOLATION_HANDLER(                        \
+          CONTRACT_VIOLATION(std::move(check.comment))); \
+    }                                                    \
   }
 
 /**
