@@ -49,7 +49,7 @@ if(BUILD_TESTING)
 
     # Unit tests
     set(TEST_EXE test_${PROJECT_NAME}_example${TARGET_SUFFIX})
-    ament_add_gtest(${TEST_EXE} test/src/gtest_main.cpp test/src/test_contracts_example${TARGET_SUFFIX}.cpp)
+    ament_add_gtest(${TEST_EXE} test/gtest_main.cpp test/test_contracts_example${TARGET_SUFFIX}.cpp)
     target_compile_definitions(${TEST_EXE} PRIVATE ${BUILD_DEFINITIONS})
     ament_target_dependencies(${TEST_EXE} contracts_lite)
     target_link_libraries(${TEST_EXE} example${TARGET_SUFFIX})

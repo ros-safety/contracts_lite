@@ -9,8 +9,7 @@ This is the design document for the `contracts` package.
 <!-- Things to consider:
     - Why did we implement this feature? -->
 
-The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts in Autoware libraries.
-It is the intent that the use of explicit programming contracts will contribute to improved robustness and correctness in Autoware code.
+The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts.
 
 This library distinguishes between two types of contracts:
 

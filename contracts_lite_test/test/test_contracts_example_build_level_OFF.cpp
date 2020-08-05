@@ -1,4 +1,4 @@
-// Copyright 2020 The Autoware Foundation
+// Copyright 2020 Mapless AI, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,29 +19,29 @@
 //-----------------------------------------------------------------------------
 
 /**
- * @brief With build level DEFAULT, contract enforcement is disabled for AUDIT
- * level. Expect no errors for any AUDIT level contracts.
+ * @brief With build level OFF, contract enforcement is disabled. Expect no
+ * errors.
  */
-TEST(contracts, example_with_build_level_DEFAULT) {
+TEST(contracts, example_with_build_level_OFF) {
   namespace ex = autoware::contracts::example;
 
   const auto no_violation = 5.0f;
   EXPECT_NO_THROW({ ex::foo(no_violation); });
 
   const auto violate_precondition = 10.0f;
-  EXPECT_THROW({ ex::foo(violate_precondition); }, std::runtime_error);
+  EXPECT_NO_THROW({ ex::foo(violate_precondition); });
 
   const auto violate_assertion_0 = 2.3f;
-  EXPECT_THROW({ ex::foo(violate_assertion_0); }, std::runtime_error);
+  EXPECT_NO_THROW({ ex::foo(violate_assertion_0); });
 
   const auto violate_assertion_1 = -5.0f;
-  EXPECT_THROW({ ex::foo(violate_assertion_1); }, std::runtime_error);
+  EXPECT_NO_THROW({ ex::foo(violate_assertion_1); });
 
   const auto violate_assertion_2 = 0.0f;
   EXPECT_NO_THROW({ ex::foo(violate_assertion_2); });
 
   const auto violate_postcondition = 0.5f;
-  EXPECT_THROW({ ex::foo(violate_postcondition); }, std::runtime_error);
+  EXPECT_NO_THROW({ ex::foo(violate_postcondition); });
 }
 
 //-----------------------------------------------------------------------------
