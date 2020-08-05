@@ -24,13 +24,12 @@
  * https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86274
  */
 TEST(contracts, gcc_7x_to_string_fix) {
-  namespace ac = autoware::contracts;
   constexpr auto NaN = std::numeric_limits<float>::quiet_NaN();
   constexpr auto Inf = std::numeric_limits<float>::infinity();
 
-  EXPECT_EQ(ac::gcc_7x_to_string_fix(NaN), "nan");
-  EXPECT_EQ(ac::gcc_7x_to_string_fix(Inf), "inf");
-  EXPECT_EQ(ac::gcc_7x_to_string_fix(-1.0f), std::to_string(-1.0f));
-  EXPECT_EQ(ac::gcc_7x_to_string_fix(0.0f), std::to_string(0.0f));
-  EXPECT_EQ(ac::gcc_7x_to_string_fix(1.0f), std::to_string(1.0f));
+  EXPECT_EQ(contracts_lite::gcc_7x_to_string_fix(NaN), "nan");
+  EXPECT_EQ(contracts_lite::gcc_7x_to_string_fix(Inf), "inf");
+  EXPECT_EQ(contracts_lite::gcc_7x_to_string_fix(-1.0f), std::to_string(-1.0f));
+  EXPECT_EQ(contracts_lite::gcc_7x_to_string_fix(0.0f), std::to_string(0.0f));
+  EXPECT_EQ(contracts_lite::gcc_7x_to_string_fix(1.0f), std::to_string(1.0f));
 }

@@ -19,74 +19,67 @@
 #include <array>
 #include <type_traits>
 
-#include "contracts_lite/failure_status.hpp"
+#include "contracts_lite/contract_types.hpp"
 #include "contracts_lite/to_string.hpp"
 
 /**
  * @brief This include is the violation handler.
  *
  * This can be a user-provided file that defines a custom violation handler. A
- * simple default handler is provided as part of the library.
+ * simple default handler is provided as part of the contracts_lite library.
  */
 #include "contracts_lite/simple_violation_handler.hpp"
 
-namespace autoware {
-namespace contracts {
+namespace contracts_lite_test {
 namespace example {
 
-/** @brief This namespace contains the contract for the contracts::example
- * library. */
+/**
+ * This namespace contains the contract for the contracts::example library.
+ */
 namespace contract {
-
-/** @brief These checks must be true upon entering the body of
- * contracts::example::foo. */
 namespace preconditions {
 
-/** @brief Check that input to 'foo' is valid. */
+/** @brief Check the preconditions of contracts_lite_test::example::foo */
 template <typename T>
-FailureStatus in_input_set(const T& bar) {
+contracts_lite::ReturnStatus in_input_set(const T& bar) {
   static_assert(std::is_floating_point<const double>::value,
                 "Input values to 'foo' must be floating point.");
   static const std::array<T, 6> S = {static_cast<T>(-5),  static_cast<T>(0),
                                      static_cast<T>(0.5), static_cast<T>(1),
                                      static_cast<T>(2.3), static_cast<T>(5)};
 
-  const auto is_not_in_set = std::all_of(
-      std::begin(S), std::end(S), [&bar](const T& s) { return s != bar; });
+  const auto is_in_set = std::any_of(std::begin(S), std::end(S),
+                                     [&bar](const T& s) { return s == bar; });
 
-  return FailureStatus("The value " + gcc_7x_to_string_fix(bar) +
-                           " is not a member of the input set",
-                       is_not_in_set);
+  return contracts_lite::ReturnStatus(
+      "The value " + contracts_lite::gcc_7x_to_string_fix(bar) +
+          " must be a member of the input set",
+      is_in_set);
 }
 
 }  // namespace preconditions
 
-/** @brief These checks must be true upon exit of the body of
- * contracts::example::foo. */
 namespace postconditions {
 
-/**
- * @brief Check all postconditions for function 'foo'.
- * @pre The value satisfies all of contract::foo::assertions.
- */
+/** @brief Check all postconditions for function 'foo'. */
 template <typename T>
-FailureStatus foo(const T& bar) {
+contracts_lite::ReturnStatus foo(const T& bar) {
   static const std::array<T, 3> S = {static_cast<T>(0), static_cast<T>(1),
                                      static_cast<T>(5)};
 
-  const auto is_not_in_set = std::all_of(
-      std::begin(S), std::end(S), [&bar](const T& s) { return s != bar; });
+  const auto is_in_set = std::any_of(std::begin(S), std::end(S),
+                                     [&bar](const T& s) { return s == bar; });
 
-  return FailureStatus("The value " + gcc_7x_to_string_fix(bar) +
-                           " is not a member of the output set",
-                       is_not_in_set);
+  return contracts_lite::ReturnStatus(
+      "The value " + contracts_lite::gcc_7x_to_string_fix(bar) +
+          " must be a member of the output set",
+      is_in_set);
 }
 
 }  // namespace postconditions
 
 }  // namespace contract
 }  // namespace example
-}  // namespace contracts
-}  // namespace autoware
+}  // namespace contracts_lite_test
 
 #endif  // EXAMPLE__CONTRACT__CONTRACT_HPP_

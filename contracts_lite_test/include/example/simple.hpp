@@ -20,8 +20,7 @@
 
 #include "example/contract.hpp"
 
-namespace autoware {
-namespace contracts {
+namespace contracts_lite_test {
 
 /**
  * @brief This namespace contains a simple example library along with a contract
@@ -60,10 +59,10 @@ T foo(T bar) {
   if (bar == static_cast<T>(1)) {
     bar = std::numeric_limits<float>::quiet_NaN();
   }
-  DEFAULT_CHECK("'bar' should not be NaN here", std::isnan(bar));
+  DEFAULT_CHECK("'bar' must not be NaN here", !std::isnan(bar));
 
   // Check for assertion violation
-  AUDIT_CHECK("'bar' should not be zero here", (bar == static_cast<T>(0)));
+  AUDIT_CHECK("'bar' must not be zero here", (bar != static_cast<T>(0)));
 
   // Intentionally violate a postcondition
   if (bar == static_cast<T>(-5)) {
@@ -76,7 +75,6 @@ T foo(T bar) {
 
 }  // namespace example
 
-}  // namespace contracts
-}  // namespace autoware
+}  // namespace contracts_lite_test
 
 #endif  // EXAMPLE__SIMPLE_HPP_

@@ -20,10 +20,9 @@
 #include <string>
 #include <utility>
 
-#include "contracts_lite/contract_violation.hpp"
+#include "contracts_lite/contract_types.hpp"
 
-namespace autoware {
-namespace contracts {
+namespace contracts_lite {
 
 /**
  * @brief This function can be specified as the contract violation handler.
@@ -43,16 +42,15 @@ inline void handler_without_continuation(
   std::terminate();
 }
 
-}  // namespace contracts
-}  // namespace autoware
+}  // namespace contracts_lite
 
 /** @brief Define the build-dependent contract violation handler. */
 #ifdef CONTRACT_VIOLATION_CONTINUATION_MODE_ON
 #define CONTRACT_VIOLATION_HANDLER(violation) \
-  ::autoware::contracts::handler_with_continuation(violation)
+  contracts_lite::handler_with_continuation(violation)
 #else
 #define CONTRACT_VIOLATION_HANDLER(violation) \
-  ::autoware::contracts::handler_without_continuation(violation)
+  contracts_lite::handler_without_continuation(violation)
 #endif
 
 #include "contracts_lite/enforcement.hpp"

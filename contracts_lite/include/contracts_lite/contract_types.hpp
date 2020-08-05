@@ -12,24 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef CONTRACTS__CONTRACT_VIOLATION_HPP_
-#define CONTRACTS__CONTRACT_VIOLATION_HPP_
+#ifndef CONTRACTS__CONTRACT_TYPES_HPP_
+#define CONTRACTS__CONTRACT_TYPES_HPP_
 
 #include <cstdint>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <utility>
 
-namespace autoware {
 /**
  * @brief This namespace contains data strutures, functions, and macros used to
  * enforce run-time contracts.
  * @note For reference, see:
  * http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html
  */
-namespace contracts {
+namespace contracts_lite {
 
-/** @brief Data structure for violation handling. */
+/**
+ * @brief Class defining boolean return status with comment.
+ *
+ * A Status object contains a string message and boolean value. The message
+ * describes how to interpret the boolean return value.
+ */
+class ReturnStatus {
+ public:
+  ReturnStatus(std::string comment, bool status)
+      : comment(std::move(comment)), status(status) {}
+  std::string comment;
+  const bool status;
+};
+
+/** @brief Data structure for information describing contract violations. */
 struct ContractViolation {
   const uint_least32_t line_number;
   const std::string comment;
@@ -38,8 +52,7 @@ struct ContractViolation {
   const std::string file_name;
   const std::string function_name;
 
-  /** @brief Convience stream overload for printing contract violation to
-   * string. */
+  /** @brief Stream overload for printing contract violation to string. */
   friend std::ostream& operator<<(std::ostream& os,
                                   const ContractViolation cv) {
     os << "{comment: \"" << cv.comment << "\", function_name: \""
@@ -69,7 +82,6 @@ struct ContractViolation {
         function_name(std::move(function_name)) {}
 };
 
-}  // namespace contracts
-}  // namespace autoware
+}  // namespace contracts_lite
 
-#endif  // CONTRACTS__CONTRACT_VIOLATION_HPP_
+#endif  // CONTRACTS__CONTRACT_TYPES_HPP_

@@ -18,12 +18,9 @@
 
 //-----------------------------------------------------------------------------
 
-/**
- * @brief With build level OFF, contract enforcement is disabled. Expect no
- * errors.
- */
+/** @brief With build level OFF, contract enforcement is disabled. */
 TEST(contracts, example_with_build_level_OFF) {
-  namespace ex = autoware::contracts::example;
+  namespace ex = contracts_lite_test::example;
 
   const auto no_violation = 5.0f;
   EXPECT_NO_THROW({ ex::foo(no_violation); });
