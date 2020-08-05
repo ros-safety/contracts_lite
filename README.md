@@ -3,23 +3,11 @@ Contracts
 
 This is the design document for the `contracts` package.
 
-
 # Purpose / Use cases
-<!-- Required -->
-<!-- Things to consider:
-    - Why did we implement this feature? -->
 
 The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts.
 
-This library distinguishes between two types of contracts:
-
-1. **External**: These are contracts that cover the external function behavior, i.e., the input, output, and side effects of the function.
-2. **Internal**: These are contracts that cover the internal function behavior, i.e., behavior strictly within the scope of the function itself.
-
 # Design
-<!-- Required -->
-<!-- Things to consider:
-    - How does it work? -->
 
 This package is designed to mimic the behavior and specification of contracts as described in the [C++20 proposal](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html).
 The proposal defines a "contract" as a collection of preconditions, postconditions, and assertions defined for a given function. These are defined as:
@@ -50,15 +38,7 @@ To distinguish these cases, there are two build levels that define contract enfo
 - **build level default**: Contracts enforced at the default level are always checked when contracts are enabled.
 - **build level audit**: Contracts enforced at the audit level are only checked when contracts are enabled and the build level is set to `audit`.
 
-## Assumptions / Known limits
-<!-- Required -->
-
-N/A
-
 ## Inputs / Outputs / API
-<!-- Required -->
-<!-- Things to consider:
-    - How do you use the package / API? -->
 
 Using the contracts library requires that the build configuration be set and that a contract enforcement library be implemented. This section covers both of those.
 
@@ -74,31 +54,20 @@ By design, the continuation mode and build level are specified at build time. Du
 
 ### Contract enforcement library
 
-The minimum required to use the contracts library is to implement contract checks as functions that return an object of type autoware::contracts::FailureStatus.
-The FailureStatus object contains a message describing the particular failure case being checked for and a boolean value indicating whether the failure has occurred (true) or not (false).
+The minimum required to use the contracts library is to implement contract checks as functions that return an object of type `contracts_lite::ReturnStatus`.
+The ReturnStatus object contains a message describing the particular failure case being checked for and a boolean value indicating whether the failure has occurred (true) or not (false).
 
 Once the contract checks have been implemented, they can be invoked in library functions using the enforcement macros.
-For external contracts, two macros are provided to allow enforcement at the 'default' and 'audit' levels:
+Two enforcement macros are provided to allow enforcement at the 'default' and 'audit' levels:
 
-- `DEFAULT_ENFORCE(FailureStatus)`: invokes violation handler if FailureStatus arg casts to `true`
-- `AUDIT_ENFORCE(FailureStatus)`: invokes violation handler if FailureStatus arg casts to `true`
+- `DEFAULT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
+- `AUDIT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 
-Similar macros are defined for internal contracts:
-
-- `DEFAULT_CHECK(string, bool)`: invokes violation handler if bool arg is `true`
-- `AUDIT_CHECK(string, bool)`: invokes violation handler if bool arg is `true`
-
-Because internal contracts are not part of the function API, they should not be described in the API documentation of the function.
-Instead, use the string argument of the `*_ASSERT` macros to document the contract in the implementation itself.
-In contrast, do not document external contracts in the function implementation.
-In that case, use the `*_ENFORCE` macros and document the contract instead in the function's API documentation.
-When writing functions that check external contract conditions, use the comment field of the returned FailureStatus object just to describe the specific conditions of failure (e.g. what value resulted in a failed check).
-
-The next section gives an example of this.
+When writing functions that check contract conditions, use the comment field of the ReturnStatus object to describe the specific conditions of failure (e.g. what value resulted in a failed check). The next section gives an example of this.
 
 ### Working example
 
-For a working example of both an example library and a contract library, see autoware::contracts::example.
+For a working example of both an example library and a contract library, see [`contracts_lite_test/include/contracts_lite_test/simple.hpp`](contracts_lite_test/include/contracts_lite_test/simple.hpp)
 In that library, the entire contract is documented in contract.hpp.
 
 ### Pseudo-code example
@@ -132,14 +101,14 @@ namespace contract
 namespace preconditions
 {
   /** \@brief Test preconditions for 'my_func' */
-  FailureStatus input_is_good(int arg);
+  ReturnStatus input_is_good(int arg);
 }  // namespace preconditions
 
 /** \@brief This namespace contains postconditions for my_lib::my_func. */
 namespace postconditions
 {
   /** \@brief Test postconditions for 'my_func' */
-  FailureStatus output_is_good(int arg);
+  ReturnStatus output_is_good(int arg);
 }  // namespace postconditions
 
 }  // namespace contract
@@ -158,7 +127,9 @@ namespace my_lib
 
     // ... code ...
 
-    DEFAULT_CHECK("arg is less than 0; this should not happen", (arg < 0));
+    DEFAULT_ENFORCE([&] () {
+      return ReturnStatus("arg must be greater than zero", (arg > 0));
+    }());
 
     // ... code ...
 
@@ -171,7 +142,7 @@ namespace my_lib
 
 ## User-defined violation handler
 
-The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type autoware::contracts::FailureStatus, and the enforcement.hpp must be included after that macro is defined. A bare minimum example would be something like:
+The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type contracts_lite::ReturnStatus, and the enforcement.hpp must be included after that macro is defined. A bare minimum example would be something like:
 
 ```
 #define CONTRACT_VIOLATION_HANDLER(violation) std::terminate()
@@ -200,31 +171,16 @@ The contracts library is strictly an enforcement mechanism.
 It does not itself perform any error detection.
 Error handling is always either calling `std::terminate` or throwing `std::runtime_error`.
 
-# Security considerations
-<!-- Required -->
-<!-- Things to consider:
-- Spoofing (How do you check for and handle fake input?)
-- Tampering (How do you check for and handle tampered input?)
-- Repudiation (How are you affected by the actions of external actors?).
-- Information Disclosure (Can data leak?).
-- Denial of Service (How do you handle spamming?).
-- Elevation of Privilege (Do you need to change permission levels during execution?) -->
-
-There are no security consideration.
-
 # References / External links
-<!-- Optional -->
 
 - [A Contract Design](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0380r1.pdf)
 - [Support for contract based programming in C++](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html)
 
 # Future extensions / Unimplemented parts
-<!-- Optional -->
 
 Ultimately this library should be replaced with C++20 contracts when they become part of the language.
 That will not necessarily be a trivial operation, but by following the conventions of the C++20 proposal, it should at least be a largely mechanical operation.
 
 # Related issues
-<!-- Required -->
 
 - https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto/-/issues/520

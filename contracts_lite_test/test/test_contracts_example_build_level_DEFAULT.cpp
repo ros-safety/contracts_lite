@@ -14,7 +14,7 @@
 
 #include "gtest/gtest.h"
 
-#include "example/simple.hpp"
+#include "contracts_lite_test/simple.hpp"
 
 //-----------------------------------------------------------------------------
 

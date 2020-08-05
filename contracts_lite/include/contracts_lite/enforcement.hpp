@@ -76,32 +76,16 @@
     }                                                    \
   }
 
-/**
- * @brief Invokes violation handler if assert_check arg is `true`
- * @note INTERNAL USE ONLY
- */
-#define ENFORCE_ASSERTION(message, assert_check) \
-  ENFORCE_CONTRACT(::contracts_lite::ReturnStatus(message, assert_check))
-
 /** @brief enforcement Macros that enforce contracts based on build level. */
 #ifdef CONTRACT_BUILD_LEVEL_OFF
 #define AUDIT_ENFORCE(contract_check)
 #define DEFAULT_ENFORCE(contract_check)
-#define AUDIT_CHECK(message, assert_check)
-#define DEFAULT_CHECK(message, assert_check)
 #elif defined(CONTRACT_BUILD_LEVEL_AUDIT)
 #define AUDIT_ENFORCE(contract_check) ENFORCE_CONTRACT(contract_check)
 #define DEFAULT_ENFORCE(contract_check) ENFORCE_CONTRACT(contract_check)
-#define AUDIT_CHECK(message, assert_check) \
-  ENFORCE_ASSERTION(message, assert_check)
-#define DEFAULT_CHECK(message, assert_check) \
-  ENFORCE_ASSERTION(message, assert_check)
 #else
 #define AUDIT_ENFORCE(contract_check)
 #define DEFAULT_ENFORCE(contract_check) ENFORCE_CONTRACT(contract_check)
-#define AUDIT_CHECK(message, assert_check)
-#define DEFAULT_CHECK(message, assert_check) \
-  ENFORCE_ASSERTION(message, assert_check)
 #endif
 
 #endif  // CONTRACTS__ENFORCEMENT_HPP_
