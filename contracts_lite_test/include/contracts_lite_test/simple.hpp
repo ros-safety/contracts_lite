@@ -18,7 +18,7 @@
 #include <cmath>
 #include <limits>
 
-#include "example/contract.hpp"
+#include "contracts_lite_test/contract.hpp"
 
 namespace contracts_lite_test {
 
@@ -59,10 +59,16 @@ T foo(T bar) {
   if (bar == static_cast<T>(1)) {
     bar = std::numeric_limits<float>::quiet_NaN();
   }
-  DEFAULT_CHECK("'bar' must not be NaN here", !std::isnan(bar));
+  DEFAULT_ENFORCE([&]() {
+    return contracts_lite::ReturnStatus("'bar' must not be NaN here",
+                                        !std::isnan(bar));
+  }());
 
   // Check for assertion violation
-  AUDIT_CHECK("'bar' must not be zero here", (bar != static_cast<T>(0)));
+  AUDIT_ENFORCE([&]() {
+    return contracts_lite::ReturnStatus("'bar' must not be zero here",
+                                        (bar != static_cast<T>(0)));
+  }());
 
   // Intentionally violate a postcondition
   if (bar == static_cast<T>(-5)) {
