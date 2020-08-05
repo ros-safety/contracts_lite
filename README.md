@@ -67,8 +67,8 @@ When writing functions that check contract conditions, use the comment field of 
 
 ### Working example
 
-For a working example of both an example library and a contract library, see [`contracts_lite_test/include/contracts_lite_test/simple.hpp`](contracts_lite_test/include/contracts_lite_test/simple.hpp)
-In that library, the entire contract is documented in contract.hpp.
+For a working example of contract enforcement, see [`contracts_lite_test`](contracts_lite_test).
+That package contains minimal example library, its contract, and unit tests showing its enforcement under various build levels.
 
 ### Pseudo-code example
 
