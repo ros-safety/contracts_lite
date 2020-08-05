@@ -97,17 +97,13 @@ namespace my_lib
 namespace contract
 {
 
-/** \@brief This namespace contains preconditions for my_lib::my_func. */
 namespace preconditions
 {
-  /** \@brief Test preconditions for 'my_func' */
   ReturnStatus input_is_good(int arg);
 }  // namespace preconditions
 
-/** \@brief This namespace contains postconditions for my_lib::my_func. */
 namespace postconditions
 {
-  /** \@brief Test postconditions for 'my_func' */
   ReturnStatus output_is_good(int arg);
 }  // namespace postconditions
 
