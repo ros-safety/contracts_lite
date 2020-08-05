@@ -20,7 +20,6 @@
 #include <type_traits>
 
 #include "contracts_lite/contract_types.hpp"
-#include "contracts_lite/to_string.hpp"
 
 /**
  * @brief This include is the violation handler.

@@ -15,6 +15,7 @@
 #ifndef CONTRACTS__CONTRACT_TYPES_HPP_
 #define CONTRACTS__CONTRACT_TYPES_HPP_
 
+#include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <sstream>
@@ -28,6 +29,21 @@
  * http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html
  */
 namespace contracts_lite {
+
+/**
+ * @brief Workaround for bug in std::to_string in gcc 7.x
+ * @note See: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86274
+ */
+template <typename T>
+std::string gcc_7x_to_string_fix(const T& val) {
+  if (std::isnan(val)) {
+    return "nan";
+  }
+  if (std::isinf(val)) {
+    return "inf";
+  }
+  return std::to_string(val);
+}
 
 /**
  * @brief Class defining boolean return status with comment.
