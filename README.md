@@ -1,7 +1,5 @@
-Contracts {#contracts-package-design}
+Contracts
 ===========
-
-[TOC]
 
 This is the design document for the `contracts` package.
 
