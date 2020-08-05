@@ -25,8 +25,7 @@
 #include <string>
 #include <utility>
 
-#include "contracts_lite/contract_violation.hpp"
-#include "contracts_lite/failure_status.hpp"
+#include "contracts_lite/contract_types.hpp"
 
 /**
  * @brief Debug string definitions for continuation mode
@@ -58,7 +57,7 @@
  * @note INTERNAL USE ONLY
  */
 #define CONTRACT_VIOLATION(comment)                      \
-  ::autoware::contracts::ContractViolation(              \
+  ::contracts_lite::ContractViolation(                   \
       static_cast<uint_least32_t>(__LINE__), (comment),  \
       std::string(CONTRACT_BUILD_LEVEL),                 \
       std::string(CONTRACT_VIOLATION_CONTINUATION_MODE), \
@@ -71,7 +70,7 @@
 #define ENFORCE_CONTRACT(contract_check)                 \
   {                                                      \
     auto check = (contract_check);                       \
-    if (check.is_failing) {                              \
+    if (!check.status) {                                 \
       CONTRACT_VIOLATION_HANDLER(                        \
           CONTRACT_VIOLATION(std::move(check.comment))); \
     }                                                    \
@@ -82,7 +81,7 @@
  * @note INTERNAL USE ONLY
  */
 #define ENFORCE_ASSERTION(message, assert_check) \
-  ENFORCE_CONTRACT(FailureStatus(message, assert_check))
+  ENFORCE_CONTRACT(::contracts_lite::ReturnStatus(message, assert_check))
 
 /** @brief enforcement Macros that enforce contracts based on build level. */
 #ifdef CONTRACT_BUILD_LEVEL_OFF

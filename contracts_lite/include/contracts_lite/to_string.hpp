@@ -18,8 +18,7 @@
 #include <cmath>
 #include <string>
 
-namespace autoware {
-namespace contracts {
+namespace contracts_lite {
 
 /**
  * @brief Workaround for bug in std::to_string in gcc 7.x
@@ -36,7 +35,6 @@ std::string gcc_7x_to_string_fix(const T& val) {
   return std::to_string(val);
 }
 
-}  // namespace contracts
-}  // namespace autoware
+}  // namespace contracts_lite
 
 #endif  // CONTRACTS__TO_STRING_HPP_

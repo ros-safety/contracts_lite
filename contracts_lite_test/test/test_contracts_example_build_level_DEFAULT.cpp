@@ -23,7 +23,7 @@
  * level. Expect no errors for any AUDIT level contracts.
  */
 TEST(contracts, example_with_build_level_DEFAULT) {
-  namespace ex = autoware::contracts::example;
+  namespace ex = contracts_lite_test::example;
 
   const auto no_violation = 5.0f;
   EXPECT_NO_THROW({ ex::foo(no_violation); });
