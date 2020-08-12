@@ -7,6 +7,41 @@ This is the design document for the `contracts` package.
 
 The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts.
 
+# Usage
+
+## Prerequisites
+
+- CMake >= 3.10
+- GTest (if building tests)
+- A C++14-capable compiler
+
+## Instructions
+
+Clone the repository and `cd` into the cloned folder and then:
+
+```console
+mkdir build && cd build
+cmake ..
+make install
+```
+
+**Note:** The last command may require super-user privileges i.e. `sudo`.
+
+If you wish to build the tests or the example, you can add the `-DBUILD_TESTING` or `-DBUILD_EXAMPLES` flags, respectively:
+
+```console
+mkdir build && cd build
+cmake .. -DBUILD_TESTING=on -DBUILD_EXAMPLES=on
+make
+make install
+```
+
+The easiest way to run all of the tests on Linux is with a script similar to the following:
+
+```console
+for exec in $(find . -executable -type f -name 'test*'); do $exec; done
+```
+
 # Design
 
 This package is designed to mimic the behavior and specification of contracts as described in the [C++20 proposal](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html).
