@@ -14,31 +14,46 @@
 
 #include "gtest/gtest.h"
 
+#include <cstdlib>
+
 #include "contracts_lite_test/simple.hpp"
 
 //-----------------------------------------------------------------------------
 
-/** @brief With build level OFF, contract enforcement is disabled. */
-TEST(contracts, example_with_build_level_OFF) {
+/**
+ * @brief With build level DEFAULT, contract enforcement is disabled for AUDIT
+ * level. Expect no errors for any AUDIT level contracts.
+ */
+TEST(contracts, example_with_build_level_DEFAULT_OFF) {
   namespace ex = contracts_lite_test::example;
 
   const auto no_violation = 5.0f;
-  EXPECT_NO_THROW({ ex::foo(no_violation); });
+  EXPECT_EXIT(
+      {
+        ex::foo(no_violation);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_precondition = 10.0f;
-  EXPECT_NO_THROW({ ex::foo(violate_precondition); });
+  EXPECT_DEATH(ex::foo(violate_precondition), "");
 
   const auto violate_assertion_0 = 2.3f;
-  EXPECT_NO_THROW({ ex::foo(violate_assertion_0); });
+  EXPECT_DEATH(ex::foo(violate_assertion_0), "");
 
   const auto violate_assertion_1 = -5.0f;
-  EXPECT_NO_THROW({ ex::foo(violate_assertion_1); });
+  EXPECT_DEATH(ex::foo(violate_assertion_1), "");
 
   const auto violate_assertion_2 = 0.0f;
-  EXPECT_NO_THROW({ ex::foo(violate_assertion_2); });
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_assertion_2);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_postcondition = 0.5f;
-  EXPECT_NO_THROW({ ex::foo(violate_postcondition); });
+  EXPECT_DEATH(ex::foo(violate_postcondition), "");
 }
 
 //-----------------------------------------------------------------------------
