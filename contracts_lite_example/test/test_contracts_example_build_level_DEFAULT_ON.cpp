@@ -22,7 +22,7 @@
  * @brief With build level DEFAULT, contract enforcement is disabled for AUDIT
  * level. Expect no errors for any AUDIT level contracts.
  */
-TEST(contracts, example_with_build_level_DEFAULT) {
+TEST(contracts, example_with_build_level_DEFAULT_ON) {
   namespace ex = contracts_lite_test::example;
 
   const auto no_violation = 5.0f;

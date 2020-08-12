@@ -14,31 +14,63 @@
 
 #include "gtest/gtest.h"
 
+#include <cstdlib>
+
 #include "contracts_lite_test/simple.hpp"
 
 //-----------------------------------------------------------------------------
 
-/** @brief With build level AUDIT, all contract enforcement is enabled. */
-TEST(contracts, example_with_build_level_AUDIT) {
+/** @brief With build level OFF, contract enforcement is disabled. */
+TEST(contracts, example_with_build_level_OFF_OFF) {
   namespace ex = contracts_lite_test::example;
 
   const auto no_violation = 5.0f;
-  EXPECT_NO_THROW({ ex::foo(no_violation); });
+  EXPECT_EXIT(
+      {
+        ex::foo(no_violation);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_precondition = 10.0f;
-  EXPECT_THROW({ ex::foo(violate_precondition); }, std::runtime_error);
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_precondition);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_assertion_0 = 2.3f;
-  EXPECT_THROW({ ex::foo(violate_assertion_0); }, std::runtime_error);
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_assertion_0);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_assertion_1 = -5.0f;
-  EXPECT_THROW({ ex::foo(violate_assertion_1); }, std::runtime_error);
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_assertion_1);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_assertion_2 = 0.0f;
-  EXPECT_THROW({ ex::foo(violate_assertion_2); }, std::runtime_error);
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_assertion_2);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 
   const auto violate_postcondition = 0.5f;
-  EXPECT_THROW({ ex::foo(violate_postcondition); }, std::runtime_error);
+  EXPECT_EXIT(
+      {
+        ex::foo(violate_postcondition);
+        exit(EXIT_SUCCESS);
+      },
+      ::testing::ExitedWithCode(EXIT_SUCCESS), "");
 }
 
 //-----------------------------------------------------------------------------

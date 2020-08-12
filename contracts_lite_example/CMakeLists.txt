@@ -13,10 +13,10 @@
 # limitations under the License.
 
 # Function for creating gtest targets at different build levels
-function(build_level_targets BUILD_LEVEL)
-  set(TARGET_SUFFIX _build_level_${BUILD_LEVEL})
+function(build_level_targets BUILD_LEVEL MODE)
+  set(TARGET_SUFFIX _build_level_${BUILD_LEVEL}_${MODE})
   set(BUILD_DEFINITIONS
-    -DCONTRACT_VIOLATION_CONTINUATION_MODE_ON
+    -DCONTRACT_VIOLATION_CONTINUATION_MODE_${MODE}
     -DCONTRACT_BUILD_LEVEL_${BUILD_LEVEL}
   )
 
@@ -37,7 +37,12 @@ function(build_level_targets BUILD_LEVEL)
   gtest_discover_tests(${TEST_EXE})
 endfunction()
 
-# Test all three build level targets
-build_level_targets("DEFAULT")
-build_level_targets("OFF")
-build_level_targets("AUDIT")
+# Test all three build level targets with continuation mode on
+build_level_targets("DEFAULT" "ON")
+build_level_targets("OFF" "ON")
+build_level_targets("AUDIT" "ON")
+
+# Test all three build level targets with continuation mode off
+build_level_targets("DEFAULT" "OFF")
+build_level_targets("OFF" "OFF")
+build_level_targets("AUDIT" "OFF")

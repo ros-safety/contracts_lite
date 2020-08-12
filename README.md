@@ -42,6 +42,8 @@ The easiest way to run all of the tests on Linux is with a script similar to the
 for exec in $(find . -executable -type f -name 'test*'); do $exec; done
 ```
 
+For convenience, this script is provided as `run_tests.sh` in the repo root.
+
 # Design
 
 This package is designed to mimic the behavior and specification of contracts as described in the [C++20 proposal](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html).
