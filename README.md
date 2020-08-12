@@ -65,7 +65,7 @@ The choice of which handler to use is made at build time by selecting the contra
 - **continuation mode on**: Execution is allowed to continue beyond contraction violation; the handler throws an exception and it is up to the process to handle the error.
 
 > Note: Continuation mode 'on' is only intended for testing and debugging purposes, for example, writing unit tests to verify contract enforcement, or to verify contract-enforced library behavior.
-In normal usage, continuation mode should always be 'off'.
+In normal usage, continuation mode should typically be 'off'.
 
 Finally, it may be the case that verifying contract conditions is undesirable or impractical to do under normal operating conditions, but is desirable under testing conditions.
 This can happen when testing the contract is computationally expensive compared to the evaluation of the function itself.
