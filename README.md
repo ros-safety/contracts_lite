@@ -116,10 +116,10 @@ namespace my_lib
 {
 
   /**
-   * \@brief Some description of what 'my_func' does.
+   * @brief Some description of what 'my_func' does.
    *
-   * \@pre Input must be less than -1 or greater than +1
-   * \@post Input must be greater than -0.5 and less than 0.5
+   * @pre Input must be less than -1 or greater than +1
+   * @post Input must be greater than -0.5 and less than 0.5
    */
   int my_func(int arg);
 
