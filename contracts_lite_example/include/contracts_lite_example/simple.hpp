@@ -18,7 +18,7 @@
 #include <cmath>
 #include <limits>
 
-#include "contracts_lite_test/contract.hpp"
+#include "contracts_lite_example/contract.hpp"
 
 namespace contracts_lite_test {
 
