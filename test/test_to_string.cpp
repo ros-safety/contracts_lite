@@ -23,7 +23,7 @@
  * std::to_string. It is a workaround for this bug:
  * https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86274
  */
-TEST(contracts, gcc_7x_to_string_fix) {
+TEST(Contracts_Lite, gcc_7x_to_string_fix) {
   constexpr auto NaN = std::numeric_limits<float>::quiet_NaN();
   constexpr auto Inf = std::numeric_limits<float>::infinity();
 

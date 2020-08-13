@@ -55,6 +55,10 @@ class ReturnStatus {
  public:
   ReturnStatus(std::string comment, bool status)
       : comment(std::move(comment)), status(status) {}
+  operator bool() const { return status; }
+  friend std::ostream& operator<<(std::ostream& os, const ReturnStatus& r) {
+    return (os << r.comment);
+  }
   std::string comment;
   const bool status;
 };
