@@ -37,7 +37,7 @@ template <typename T>
 ReturnStatus in_range_closed_open(const T& value, const T& min, const T& max) {
   const auto inside_min = (value >= min);
   const auto inside_max = (value < max);
-  const auto comment = std::to_string(value) + " must be inside the range (" +
+  const auto comment = std::to_string(value) + " must be inside the range [" +
                        std::to_string(min) + ", " + std::to_string(max) + ")";
   return ReturnStatus(comment, inside_min && inside_max);
 }
@@ -48,7 +48,7 @@ ReturnStatus in_range_open_closed(const T& value, const T& min, const T& max) {
   const auto inside_min = (value > min);
   const auto inside_max = (value <= max);
   const auto comment = std::to_string(value) + " must be inside the range (" +
-                       std::to_string(min) + ", " + std::to_string(max) + ")";
+                       std::to_string(min) + ", " + std::to_string(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
@@ -58,8 +58,8 @@ ReturnStatus in_range_closed_closed(const T& value, const T& min,
                                     const T& max) {
   const auto inside_min = (value >= min);
   const auto inside_max = (value <= max);
-  const auto comment = std::to_string(value) + " must be inside the range (" +
-                       std::to_string(min) + ", " + std::to_string(max) + ")";
+  const auto comment = std::to_string(value) + " must be inside the range [" +
+                       std::to_string(min) + ", " + std::to_string(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
