@@ -83,7 +83,7 @@ Using the contracts library requires that the build configuration be set and tha
 
 For most use cases, the default build configuration will be sufficient and users will not need to do anything here. However, when implementing unit tests, it may sometimes be useful to change the build configuration.
 
-By design, the continuation mode and build level are specified at build time. During compilation, the code looks for the following defines to decide how to build the library (see enforcement.hpp):
+By design, the continuation mode and build level are specified at build time. During compilation, the code looks for the following defines to decide how to build the library (see [`enforcement.hpp`](include/contracts_lite/enforcement.hpp)):
 
 - `CONTRACT_VIOLATION_CONTINUATION_MODE_(ON|OFF)`: If no define is given for continuation mode, `OFF` is assumed
 - `CONTRACT_BUILD_LEVEL_(OFF|DEFAULT|AUDIT)`: If no define is given for build level, `DEFAULT` is assumed.
@@ -104,7 +104,7 @@ When writing functions that check contract conditions, use the comment field of 
 
 ### Working example
 
-For a working example of contract enforcement, see [`contracts_lite_test`](contracts_lite_test).
+For a working example of contract enforcement, see [`contracts_lite_example`](contracts_lite_example).
 That package contains minimal example library, its contract, and unit tests showing its enforcement under various build levels.
 
 ### Pseudo-code example
@@ -173,9 +173,13 @@ namespace my_lib
 }  // namespace my_lib
 ```
 
+### Utilities
+
+As a convenience, a simple set of range checks are provided for using in contract enforcement. See [`range_checks.hpp`](include/contracts_lite/range_checks.hpp).
+
 ## User-defined violation handler
 
-The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type contracts_lite::ReturnStatus, and the enforcement.hpp must be included after that macro is defined. A bare minimum example would be something like:
+The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type `contracts_lite::ReturnStatus`, and the [`enforcement.hpp`](include/contracts_lite/enforcement.hpp) must be included after that macro is defined. A bare minimum example would be something like:
 
 ```
 #define CONTRACT_VIOLATION_HANDLER(violation) std::terminate()
@@ -195,10 +199,9 @@ To properly handle different continuation modes, a handler might look something 
 #include "contracts/enforcement.hpp"
 ```
 
-For reference, see simple_violation_handler.hpp.
+For reference, see [`simple_violation_handler.hpp`](include/contracts_lite/simple_violation_handler.hpp).
 
 ## Error detection and handling
-<!-- Required -->
 
 The contracts library is strictly an enforcement mechanism.
 It does not itself perform any error detection.

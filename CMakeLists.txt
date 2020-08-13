@@ -29,6 +29,7 @@ endif()
 set(HEADER_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/contract_types.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/enforcement.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/range_checks.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/simple_violation_handler.hpp
 )
 
@@ -57,9 +58,11 @@ if(BUILD_TESTING)
   include(GoogleTest)
 
   # Unit tests
-  add_executable(test_to_string test/test_to_string.cpp)
-  target_link_libraries(test_to_string ${PROJECT_NAME} GTest::GTest GTest::Main)
-  gtest_discover_tests(test_to_string)
+  add_executable(test_${PROJECT_NAME}
+    test/test_range_checks.cpp
+    test/test_to_string.cpp)
+  target_link_libraries(test_${PROJECT_NAME} ${PROJECT_NAME} GTest::GTest GTest::Main)
+  gtest_discover_tests(test_${PROJECT_NAME})
 endif()
 
 # Examples
