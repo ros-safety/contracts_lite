@@ -16,7 +16,7 @@
 
 #include <cstdlib>
 
-#include "contracts_lite_test/simple.hpp"
+#include "contracts_lite_example/simple.hpp"
 
 //-----------------------------------------------------------------------------
 

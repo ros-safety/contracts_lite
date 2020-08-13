@@ -104,7 +104,7 @@ When writing functions that check contract conditions, use the comment field of 
 
 ### Working example
 
-For a working example of contract enforcement, see [`contracts_lite_test`](contracts_lite_test).
+For a working example of contract enforcement, see [`contracts_lite_example`](contracts_lite_example).
 That package contains minimal example library, its contract, and unit tests showing its enforcement under various build levels.
 
 ### Pseudo-code example
