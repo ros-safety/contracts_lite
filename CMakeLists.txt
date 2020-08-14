@@ -59,6 +59,7 @@ if(BUILD_TESTING)
 
   # Unit tests
   add_executable(test_${PROJECT_NAME}
+    test/test_return_status.cpp
     test/test_range_checks.cpp
     test/test_to_string.cpp)
   target_link_libraries(test_${PROJECT_NAME} ${PROJECT_NAME} GTest::GTest GTest::Main)
