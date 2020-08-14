@@ -55,13 +55,29 @@ class ReturnStatus {
  public:
   ReturnStatus(std::string comment, bool status)
       : comment(std::move(comment)), status(status) {}
+
+  /** @brief Allow objects to be directly cast to bool types. */
   operator bool() const { return status; }
+
+  /** @brief Print status object to stream. */
   friend std::ostream& operator<<(std::ostream& os, const ReturnStatus& r) {
     return (os << r.comment);
   }
+
   std::string comment;
   const bool status;
 };
+
+/**
+ * @brief Concatenate status objects (useful for chaining assertions).
+ * @note This is defined as a non-member function because, as a member function,
+ * overload resolution will first cast the objects to bool, then to int, and
+ * attempt to use the integer addition operator.
+ */
+inline ReturnStatus operator+(const ReturnStatus& rs1,
+                              const ReturnStatus& rs2) {
+  return ReturnStatus(rs1.comment + "; " + rs2.comment, (rs1 && rs2));
+}
 
 /** @brief Data structure for information describing contract violations. */
 struct ContractViolation {
