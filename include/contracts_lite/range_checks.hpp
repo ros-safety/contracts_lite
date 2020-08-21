@@ -22,42 +22,58 @@
 namespace contracts_lite {
 namespace range_checks {
 
-/** @brief Check whether value belongs to (min, max) */
-template <typename T>
-ReturnStatus in_range_open_open(const T& value, const T& min, const T& max) {
-  const auto inside_min = (value > min);
-  const auto inside_max = (value < max);
+/**
+ * @brief Check whether value belongs to (min, max).
+ *
+ * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
+ */
+template <typename T, typename U>
+ReturnStatus in_range_open_open(const T& value, const U& min, const U& max) {
+  const auto inside_min = (static_cast<U>(value) > min);
+  const auto inside_max = (static_cast<U>(value) < max);
   const auto comment = std::to_string(value) + " must be inside the range (" +
                        std::to_string(min) + ", " + std::to_string(max) + ")";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
-/** @brief Check whether value belongs to [min, max) */
-template <typename T>
-ReturnStatus in_range_closed_open(const T& value, const T& min, const T& max) {
-  const auto inside_min = (value >= min);
-  const auto inside_max = (value < max);
+/**
+ * @brief Check whether value belongs to [min, max).
+ *
+ * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
+ */
+template <typename T, typename U>
+ReturnStatus in_range_closed_open(const T& value, const U& min, const U& max) {
+  const auto inside_min = (static_cast<U>(value) >= min);
+  const auto inside_max = (static_cast<U>(value) < max);
   const auto comment = std::to_string(value) + " must be inside the range [" +
                        std::to_string(min) + ", " + std::to_string(max) + ")";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
-/** @brief Check whether value belongs to (min, max] */
-template <typename T>
-ReturnStatus in_range_open_closed(const T& value, const T& min, const T& max) {
-  const auto inside_min = (value > min);
-  const auto inside_max = (value <= max);
+/**
+ * @brief Check whether value belongs to (min, max].
+ *
+ * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
+ */
+template <typename T, typename U>
+ReturnStatus in_range_open_closed(const T& value, const U& min, const U& max) {
+  const auto inside_min = (static_cast<U>(value) > min);
+  const auto inside_max = (static_cast<U>(value) <= max);
   const auto comment = std::to_string(value) + " must be inside the range (" +
                        std::to_string(min) + ", " + std::to_string(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
-/** @brief Check whether value belongs to [min, max] */
-template <typename T>
-ReturnStatus in_range_closed_closed(const T& value, const T& min,
-                                    const T& max) {
-  const auto inside_min = (value >= min);
-  const auto inside_max = (value <= max);
+/**
+ * @brief Check whether value belongs to [min, max].
+ *
+ * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
+ */
+template <typename T, typename U>
+ReturnStatus in_range_closed_closed(const T& value, const U& min,
+                                    const U& max) {
+  const auto inside_min = (static_cast<U>(value) >= min);
+  const auto inside_max = (static_cast<U>(value) <= max);
   const auto comment = std::to_string(value) + " must be inside the range [" +
                        std::to_string(min) + ", " + std::to_string(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
