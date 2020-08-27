@@ -74,9 +74,15 @@ class ReturnStatus {
  * overload resolution will first cast the objects to bool, then to int, and
  * attempt to use the integer addition operator.
  */
-inline ReturnStatus operator+(const ReturnStatus& rs1,
-                              const ReturnStatus& rs2) {
-  return ReturnStatus(rs1.comment + "; " + rs2.comment, (rs1 && rs2));
+inline ReturnStatus operator&&(const ReturnStatus& rs1,
+                               const ReturnStatus& rs2) {
+  return ReturnStatus(rs1.comment + "; AND " + rs2.comment,
+                      (rs1.status && rs2.status));
+}
+inline ReturnStatus operator||(const ReturnStatus& rs1,
+                               const ReturnStatus& rs2) {
+  return ReturnStatus(rs1.comment + "; OR " + rs2.comment,
+                      (rs1.status || rs2.status));
 }
 
 /** @brief Data structure for information describing contract violations. */
