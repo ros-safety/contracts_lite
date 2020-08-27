@@ -27,32 +27,67 @@ TEST(Contracts_Lite, ReturnStatus) {
   {
     const auto rs1 = contracts_lite::ReturnStatus("status 1", true);
     const auto rs2 = contracts_lite::ReturnStatus("status 2", true);
-    const auto rs = rs1 + rs2;
-    EXPECT_TRUE(rs) << rs;
-    EXPECT_EQ(rs.comment, "status 1; status 2") << rs;
+    {
+      const auto rs = rs1 && rs2;
+      EXPECT_TRUE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; AND status 2") << rs;
+    }
+
+    {
+      const auto rs = rs1 || rs2;
+      EXPECT_TRUE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; OR status 2") << rs;
+    }
   }
 
   {
     const auto rs1 = contracts_lite::ReturnStatus("status 1", true);
     const auto rs2 = contracts_lite::ReturnStatus("status 2", false);
-    const auto rs = rs1 + rs2;
-    EXPECT_FALSE(rs) << rs;
-    EXPECT_EQ(rs.comment, "status 1; status 2") << rs;
+
+    {
+      const auto rs = rs1 && rs2;
+      EXPECT_FALSE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; AND status 2") << rs;
+    }
+
+    {
+      const auto rs = rs1 || rs2;
+      EXPECT_TRUE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; OR status 2") << rs;
+    }
   }
 
   {
     const auto rs1 = contracts_lite::ReturnStatus("status 1", false);
     const auto rs2 = contracts_lite::ReturnStatus("status 2", true);
-    const auto rs = rs1 + rs2;
-    EXPECT_FALSE(rs) << rs;
-    EXPECT_EQ(rs.comment, "status 1; status 2") << rs;
+
+    {
+      const auto rs = rs1 && rs2;
+      EXPECT_FALSE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; AND status 2") << rs;
+    }
+
+    {
+      const auto rs = rs1 || rs2;
+      EXPECT_TRUE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; OR status 2") << rs;
+    }
   }
 
   {
     const auto rs1 = contracts_lite::ReturnStatus("status 1", false);
     const auto rs2 = contracts_lite::ReturnStatus("status 2", false);
-    const auto rs = rs1 + rs2;
-    EXPECT_FALSE(rs) << rs;
-    EXPECT_EQ(rs.comment, "status 1; status 2") << rs;
+
+    {
+      const auto rs = rs1 && rs2;
+      EXPECT_FALSE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; AND status 2") << rs;
+    }
+
+    {
+      const auto rs = rs1 || rs2;
+      EXPECT_FALSE(rs) << rs;
+      EXPECT_EQ(rs.comment, "status 1; OR status 2") << rs;
+    }
   }
 }
