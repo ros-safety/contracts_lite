@@ -29,7 +29,7 @@ namespace contracts_lite {
  * @note This function does not return. It throws std::runtime_error.
  */
 inline void handler_with_continuation(const ContractViolation& violation) {
-  throw std::runtime_error("CONTRACT VIOLATION!: " + violation.string());
+  throw std::runtime_error("CONTRACT VIOLATION: " + violation.string());
 }
 
 /**
@@ -38,7 +38,7 @@ inline void handler_with_continuation(const ContractViolation& violation) {
  */
 inline void handler_without_continuation(
     const ContractViolation& violation) noexcept {
-  std::cerr << "CONTRACT VIOLATION!: " << violation << "\n";
+  std::cerr << "CONTRACT VIOLATION: " << violation << "\n";
   std::terminate();
 }
 
