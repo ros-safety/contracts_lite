@@ -9,7 +9,7 @@ The purpose of this package is to provide a standard practice and tooling to sup
 
 # Usage
 
-**Note:** A ROS 2 version of this project is available at: [https://github.com/ros-safety/contracts\_lite\_vendor](https://github.com/ros-safety/contracts_lite_vendor)
+**Note:** This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor), which allows it to be integrated into a colcon workspace.
 
 ## Prerequisites
 
