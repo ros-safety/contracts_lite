@@ -9,6 +9,8 @@ The purpose of this package is to provide a standard practice and tooling to sup
 
 # Usage
 
+**Note:** A ROS 2 version of this project is available at: [https://github.com/ros-safety/contracts\_lite\_vendor](https://github.com/ros-safety/contracts_lite_vendor)
+
 ## Prerequisites
 
 - CMake >= 3.10
