@@ -9,6 +9,8 @@ The purpose of this package is to provide a standard practice and tooling to sup
 
 # Usage
 
+**Note:** This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor), which allows it to be integrated into a colcon workspace.
+
 ## Prerequisites
 
 - CMake >= 3.10
