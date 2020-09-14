@@ -15,10 +15,10 @@
 #ifndef CONTRACTS__SIMPLE_VIOLATION_HANDLER_HPP_
 #define CONTRACTS__SIMPLE_VIOLATION_HANDLER_HPP_
 
-#include <cstdint>
+#include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <string>
-#include <utility>
 
 #include "contracts_lite/contract_types.hpp"
 

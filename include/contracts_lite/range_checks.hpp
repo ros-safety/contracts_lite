@@ -15,8 +15,6 @@
 #ifndef CONTRACTS__RANGE_CHECKS_HPP_
 #define CONTRACTS__RANGE_CHECKS_HPP_
 
-#include <string>
-
 #include "contracts_lite/contract_types.hpp"
 
 namespace contracts_lite {
@@ -31,8 +29,9 @@ template <typename T, typename U>
 ReturnStatus in_range_open_open(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) > min);
   const auto inside_max = (static_cast<U>(value) < max);
-  const auto comment = std::to_string(value) + " must be inside the range (" +
-                       std::to_string(min) + ", " + std::to_string(max) + ")";
+  const auto comment =
+      gcc_7x_to_string_fix(value) + " must be inside the range (" +
+      gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) + ")";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
@@ -45,8 +44,9 @@ template <typename T, typename U>
 ReturnStatus in_range_closed_open(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) >= min);
   const auto inside_max = (static_cast<U>(value) < max);
-  const auto comment = std::to_string(value) + " must be inside the range [" +
-                       std::to_string(min) + ", " + std::to_string(max) + ")";
+  const auto comment =
+      gcc_7x_to_string_fix(value) + " must be inside the range [" +
+      gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) + ")";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
@@ -59,8 +59,9 @@ template <typename T, typename U>
 ReturnStatus in_range_open_closed(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) > min);
   const auto inside_max = (static_cast<U>(value) <= max);
-  const auto comment = std::to_string(value) + " must be inside the range (" +
-                       std::to_string(min) + ", " + std::to_string(max) + "]";
+  const auto comment =
+      gcc_7x_to_string_fix(value) + " must be inside the range (" +
+      gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
@@ -74,8 +75,9 @@ ReturnStatus in_range_closed_closed(const T& value, const U& min,
                                     const U& max) {
   const auto inside_min = (static_cast<U>(value) >= min);
   const auto inside_max = (static_cast<U>(value) <= max);
-  const auto comment = std::to_string(value) + " must be inside the range [" +
-                       std::to_string(min) + ", " + std::to_string(max) + "]";
+  const auto comment =
+      gcc_7x_to_string_fix(value) + " must be inside the range [" +
+      gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) + "]";
   return ReturnStatus(comment, inside_min && inside_max);
 }
 
