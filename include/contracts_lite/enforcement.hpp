@@ -22,6 +22,7 @@
 #ifndef CONTRACTS__ENFORCEMENT_HPP_
 #define CONTRACTS__ENFORCEMENT_HPP_
 
+#include <cstdint>
 #include <string>
 #include <utility>
 
