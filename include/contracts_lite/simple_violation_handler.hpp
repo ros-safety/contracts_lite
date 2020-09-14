@@ -47,10 +47,10 @@ inline void handler_without_continuation(
 /** @brief Define the build-dependent contract violation handler. */
 #ifdef CONTRACT_VIOLATION_CONTINUATION_MODE_ON
 #define CONTRACT_VIOLATION_HANDLER(violation) \
-  contracts_lite::handler_with_continuation(violation)
+  ::contracts_lite::handler_with_continuation(violation)
 #else
 #define CONTRACT_VIOLATION_HANDLER(violation) \
-  contracts_lite::handler_without_continuation(violation)
+  ::contracts_lite::handler_without_continuation(violation)
 #endif
 
 #include "contracts_lite/enforcement.hpp"
