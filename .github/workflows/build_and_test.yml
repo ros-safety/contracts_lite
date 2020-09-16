@@ -18,7 +18,12 @@ jobs:
 
     steps:
     - name: Install gtest
-      run: sudo apt-get install libgtest-dev -y
+      run: |
+        sudo apt-get install libgtest-dev -y
+        cd /usr/src/gtest
+        sudo cmake .
+        sudo make
+        sudo cp *.a /usr/lib
 
     - uses: actions/checkout@v2
 
