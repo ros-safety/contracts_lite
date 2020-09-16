@@ -1,6 +1,8 @@
 Contracts
 ===========
 
+![](https://github.com/ros-safety/contracts_lite/workflows/Build%20and%20test/badge.svg)
+
 This is the design document for the `contracts` package.
 
 # Purpose / Use cases
