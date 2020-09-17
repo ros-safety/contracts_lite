@@ -72,9 +72,9 @@ ReturnStatus in_range_closed_closed(const T& value, const U& min,
 /**
  * @brief Same checks as in parent namespace but with more informative comments.
  *
- * @note The verbose checks should be avoided in default contracts where
- * performance is important. The comment construction is orders of magnitude
- * more expensive than the check itself.
+ * @note The verbose checks are more appropriate for audit-level contracts
+ * rather than default-level contracts because comment construction is orders of
+ * magnitude more expensive than the check itself.
  */
 namespace verbose {
 
