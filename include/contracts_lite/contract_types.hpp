@@ -30,7 +30,7 @@
  * expensive) comment during audit enforcement.
  */
 #ifdef CONTRACT_BUILD_LEVEL_OFF
-#define CONTRACT_COMMENT(default_comment, audit_comment)
+#define CONTRACT_COMMENT(default_comment, audit_comment) ""
 #elif defined(CONTRACT_BUILD_LEVEL_AUDIT)
 #define CONTRACT_COMMENT(default_comment, audit_comment) (audit_comment)
 #else
