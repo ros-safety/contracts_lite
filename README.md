@@ -112,7 +112,7 @@ For this reason, an additional macro is provided that allows the user to specify
 ```
 auto comment = CONTRACT_COMMENT(
   "simple comment for default enforcement",
-  "complex comment for audit enforcement with expensive run-time info: " + foo(bar));
+  "complex comment for audit enforcement with expensive run-time info: " + std::to_string(foo(bar)));
 ```
 
 ### Working example
