@@ -78,7 +78,7 @@ struct ReturnStatus {
     return (os << r.comment);
   }
 
-  std::string comment;
+  std::string comment;  // TODO(jeff): use std::string_view in C++17
   const bool status;
 };
 
