@@ -23,6 +23,21 @@
 #include <utility>
 
 /**
+ * @brief Macro for choosing comment verbosity based on enforcement level.
+ *
+ * @note This is useful when the contract check is intended for default
+ * enforcement, but you'd like to generate a much more informative (i.e.,
+ * expensive) comment during audit enforcement.
+ */
+#ifdef CONTRACT_BUILD_LEVEL_OFF
+#define CONTRACT_COMMENT(default_comment, audit_comment)
+#elif defined(CONTRACT_BUILD_LEVEL_AUDIT)
+#define CONTRACT_COMMENT(default_comment, audit_comment) (audit_comment)
+#else
+#define CONTRACT_COMMENT(default_comment, audit_comment) (default_comment)
+#endif
+
+/**
  * @brief This namespace contains data strutures, functions, and macros used to
  * enforce run-time contracts.
  * @note For reference, see:

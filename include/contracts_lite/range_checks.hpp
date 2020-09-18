@@ -29,67 +29,10 @@ template <typename T, typename U>
 ReturnStatus in_range_open_open(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) > min);
   const auto inside_max = (static_cast<U>(value) < max);
-  return ReturnStatus(__func__, inside_min && inside_max);
-}
-
-/**
- * @brief Check whether value belongs to [min, max).
- *
- * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
- */
-template <typename T, typename U>
-ReturnStatus in_range_closed_open(const T& value, const U& min, const U& max) {
-  const auto inside_min = (static_cast<U>(value) >= min);
-  const auto inside_max = (static_cast<U>(value) < max);
-  return ReturnStatus(__func__, inside_min && inside_max);
-}
-
-/**
- * @brief Check whether value belongs to (min, max].
- *
- * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
- */
-template <typename T, typename U>
-ReturnStatus in_range_open_closed(const T& value, const U& min, const U& max) {
-  const auto inside_min = (static_cast<U>(value) > min);
-  const auto inside_max = (static_cast<U>(value) <= max);
-  return ReturnStatus(__func__, inside_min && inside_max);
-}
-
-/**
- * @brief Check whether value belongs to [min, max].
- *
- * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
- */
-template <typename T, typename U>
-ReturnStatus in_range_closed_closed(const T& value, const U& min,
-                                    const U& max) {
-  const auto inside_min = (static_cast<U>(value) >= min);
-  const auto inside_max = (static_cast<U>(value) <= max);
-  return ReturnStatus(__func__, inside_min && inside_max);
-}
-
-/**
- * @brief Same checks as in parent namespace but with more informative comments.
- *
- * @note The verbose checks are more appropriate for audit-level contracts
- * rather than default-level contracts because comment construction is orders of
- * magnitude more expensive than the check itself.
- */
-namespace verbose {
-
-/**
- * @brief Check whether value belongs to (min, max).
- *
- * @note To do the check, a value of type 'T' is cast to the bounds type 'U'.
- */
-template <typename T, typename U>
-ReturnStatus in_range_open_open(const T& value, const U& min, const U& max) {
-  const auto inside_min = (static_cast<U>(value) > min);
-  const auto inside_max = (static_cast<U>(value) < max);
-  auto comment = gcc_7x_to_string_fix(value) + " must be inside the range (" +
-                 gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) +
-                 ")";
+  auto comment = CONTRACT_COMMENT("", gcc_7x_to_string_fix(value) +
+                                          " must be inside the range (" +
+                                          gcc_7x_to_string_fix(min) + ", " +
+                                          gcc_7x_to_string_fix(max) + ")");
   return ReturnStatus(std::move(comment), inside_min && inside_max);
 }
 
@@ -102,9 +45,10 @@ template <typename T, typename U>
 ReturnStatus in_range_closed_open(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) >= min);
   const auto inside_max = (static_cast<U>(value) < max);
-  auto comment = gcc_7x_to_string_fix(value) + " must be inside the range [" +
-                 gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) +
-                 ")";
+  auto comment = CONTRACT_COMMENT("", gcc_7x_to_string_fix(value) +
+                                          " must be inside the range [" +
+                                          gcc_7x_to_string_fix(min) + ", " +
+                                          gcc_7x_to_string_fix(max) + ")");
   return ReturnStatus(std::move(comment), inside_min && inside_max);
 }
 
@@ -117,9 +61,10 @@ template <typename T, typename U>
 ReturnStatus in_range_open_closed(const T& value, const U& min, const U& max) {
   const auto inside_min = (static_cast<U>(value) > min);
   const auto inside_max = (static_cast<U>(value) <= max);
-  auto comment = gcc_7x_to_string_fix(value) + " must be inside the range (" +
-                 gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) +
-                 "]";
+  auto comment = CONTRACT_COMMENT("", gcc_7x_to_string_fix(value) +
+                                          " must be inside the range (" +
+                                          gcc_7x_to_string_fix(min) + ", " +
+                                          gcc_7x_to_string_fix(max) + "]");
   return ReturnStatus(std::move(comment), inside_min && inside_max);
 }
 
@@ -133,13 +78,12 @@ ReturnStatus in_range_closed_closed(const T& value, const U& min,
                                     const U& max) {
   const auto inside_min = (static_cast<U>(value) >= min);
   const auto inside_max = (static_cast<U>(value) <= max);
-  auto comment = gcc_7x_to_string_fix(value) + " must be inside the range [" +
-                 gcc_7x_to_string_fix(min) + ", " + gcc_7x_to_string_fix(max) +
-                 "]";
+  auto comment = CONTRACT_COMMENT("", gcc_7x_to_string_fix(value) +
+                                          " must be inside the range [" +
+                                          gcc_7x_to_string_fix(min) + ", " +
+                                          gcc_7x_to_string_fix(max) + "]");
   return ReturnStatus(std::move(comment), inside_min && inside_max);
 }
-
-}  // namespace verbose
 
 }  // namespace range_checks
 }  // namespace contracts_lite
