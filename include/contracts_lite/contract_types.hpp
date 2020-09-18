@@ -51,8 +51,7 @@ std::string gcc_7x_to_string_fix(const T& val) {
  * A Status object contains a string message and boolean value. The message
  * describes how to interpret the boolean return value.
  */
-class ReturnStatus {
- public:
+struct ReturnStatus {
   ReturnStatus(std::string comment, bool status)
       : comment(std::move(comment)), status(status) {}
 
@@ -106,9 +105,9 @@ struct ContractViolation {
   }
 
   /** @brief Convenience method to get string version of this object. */
-  std::string string() const {
+  static std::string string(const ContractViolation& cv) {
     std::stringstream ss;
-    ss << *this;
+    ss << cv;
     return ss.str();
   }
 
