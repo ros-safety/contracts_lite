@@ -173,8 +173,17 @@ namespace my_lib
 
     // ... code ...
 
+    // simple contract
     DEFAULT_ENFORCE([&] () {
       return ReturnStatus("arg must be greater than zero", (arg > 0));
+    }());
+
+    // contract with build-dependent comment
+    DEFAULT_ENFORCE([&] () {
+      auto comment = CONTRACT_COMMENT(
+        "arg must be even",
+        "arg (" + std::to_string(arg) + ") must be even");
+      return ReturnStatus(std::move(comment), ((arg & 1) == 0));
     }());
 
     // ... code ...
