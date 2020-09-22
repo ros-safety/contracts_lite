@@ -70,7 +70,7 @@
  */
 #define ENFORCE_CONTRACT(contract_check)                 \
   {                                                      \
-    auto check = (contract_check);                       \
+    auto check = std::move(contract_check);              \
     if (!check.status) {                                 \
       CONTRACT_VIOLATION_HANDLER(                        \
           CONTRACT_VIOLATION(std::move(check.comment))); \

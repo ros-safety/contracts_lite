@@ -104,7 +104,16 @@ Two enforcement macros are provided to allow enforcement at the 'default' and 'a
 - `DEFAULT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 - `AUDIT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 
-When writing functions that check contract conditions, use the comment field of the ReturnStatus object to describe the specific conditions of failure (e.g. what value resulted in a failed check). The next section gives an example of this.
+When writing functions that check contract conditions, the comment field of the ReturnStatus object can be used to describe the specific conditions of failure (e.g. what value resulted in a failed check).
+It is often desirable to make these comments informative by adding specific run time information to them.
+Doing this, however, can be computationally expensive, which may be unacceptable for default-enforced contracts under default enforcement, but acceptable for default-enforced contracts under audit enforcement.
+For this reason, an additional macro is provided that allows the user to specify at compile time what the comment string should be for default and audit enforcement. For example:
+
+```
+auto comment = CONTRACT_COMMENT(
+  "comment for default enforcement",
+  "comment for audit enforcement with expensive run-time info: " + std::to_string(foo(bar)));
+```
 
 ### Working example
 
@@ -164,8 +173,17 @@ namespace my_lib
 
     // ... code ...
 
+    // simple contract
     DEFAULT_ENFORCE([&] () {
       return ReturnStatus("arg must be greater than zero", (arg > 0));
+    }());
+
+    // contract with build-dependent comment
+    DEFAULT_ENFORCE([&] () {
+      auto comment = CONTRACT_COMMENT(
+        "arg must be even",
+        "arg (" + std::to_string(arg) + ") must be even");
+      return ReturnStatus(std::move(comment), ((arg & 1) == 0));
     }());
 
     // ... code ...
