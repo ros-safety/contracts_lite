@@ -104,6 +104,8 @@ Two enforcement macros are provided to allow enforcement at the 'default' and 'a
 - `DEFAULT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 - `AUDIT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 
+> NOTE: The macros should be treated as if they assume ownership of The `ReturnStatus` argument. For this reason, the argument needs to be either an rvalue or a non-const lvalue.
+
 When writing functions that check contract conditions, the comment field of the ReturnStatus object can be used to describe the specific conditions of failure (e.g. what value resulted in a failed check).
 It is often desirable to make these comments informative by adding specific run time information to them.
 Doing this, however, can be computationally expensive, which may be unacceptable for default-enforced contracts under default enforcement, but acceptable for default-enforced contracts under audit enforcement.
