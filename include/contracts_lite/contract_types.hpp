@@ -69,6 +69,13 @@ std::string gcc_7x_to_string_fix(const T& val) {
 struct ReturnStatus {
   ReturnStatus(std::string comment, bool status)
       : comment(std::move(comment)), status(status) {}
+  ReturnStatus(ReturnStatus& rs)
+      : ReturnStatus(std::move(rs.comment), rs.status) {}
+  ReturnStatus(ReturnStatus&& rs)
+      : ReturnStatus(std::move(rs.comment), rs.status) {}
+
+  /** @brief Disallow default construction. */
+  ReturnStatus() = delete;
 
   /** @brief Allow objects to be directly cast to bool types. */
   operator bool() const { return status; }

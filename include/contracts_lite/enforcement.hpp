@@ -68,13 +68,13 @@
  * @brief Invokes violation handler if contract_check arg evaluates to `true`
  * @note INTERNAL USE ONLY
  */
-#define ENFORCE_CONTRACT(contract_check)                 \
-  {                                                      \
-    auto check = std::move(contract_check);              \
-    if (!check.status) {                                 \
-      CONTRACT_VIOLATION_HANDLER(                        \
-          CONTRACT_VIOLATION(std::move(check.comment))); \
-    }                                                    \
+#define ENFORCE_CONTRACT(contract_check)                   \
+  {                                                        \
+    ::contracts_lite::ReturnStatus check = contract_check; \
+    if (!check.status) {                                   \
+      CONTRACT_VIOLATION_HANDLER(                          \
+          CONTRACT_VIOLATION(std::move(check.comment)));   \
+    }                                                      \
   }
 
 /** @brief enforcement Macros that enforce contracts based on build level. */
