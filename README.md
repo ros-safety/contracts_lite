@@ -244,3 +244,8 @@ That will not necessarily be a trivial operation, but by following the conventio
 # Related issues
 
 - https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto/-/issues/520
+
+## Contact
+
+For any questions or comments, please post a question at [ROS Answers](http://answers.ros.org/questions) following the [ROS support guidelines](http://wiki.ros.org/Support).
+[Add the `safety_wg` tag](https://answers.ros.org/questions/ask/?tags=safety_wg) to your question and someone from the Safety working group will spot it more easily.
