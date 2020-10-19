@@ -87,6 +87,24 @@ struct ReturnStatus {
 
   std::string comment;  // TODO(jeff): use std::string_view in C++17
   const bool status;
+
+  friend ReturnStatus operator&&(const ReturnStatus& rs1,
+                                 const ReturnStatus& rs2);
+
+  friend ReturnStatus operator||(const ReturnStatus& rs1,
+                                 const ReturnStatus& rs2);
+
+ private:
+  static std::string join_comments(const std::string& conjunction,
+                                   const std::string& comment1,
+                                   const std::string comment2) {
+    if (comment1.empty()) {
+      return comment2;
+    } else if (comment2.empty()) {
+      return comment1;
+    }
+    return (comment1 + conjunction + comment2);
+  }
 };
 
 /**
@@ -97,13 +115,17 @@ struct ReturnStatus {
  */
 inline ReturnStatus operator&&(const ReturnStatus& rs1,
                                const ReturnStatus& rs2) {
-  return ReturnStatus(rs1.comment + "; AND " + rs2.comment,
-                      (rs1.status && rs2.status));
+  const auto conjunction = "; AND ";
+  auto comment =
+      ReturnStatus::join_comments(conjunction, rs1.comment, rs2.comment);
+  return ReturnStatus(std::move(comment), (rs1.status && rs2.status));
 }
 inline ReturnStatus operator||(const ReturnStatus& rs1,
                                const ReturnStatus& rs2) {
-  return ReturnStatus(rs1.comment + "; OR " + rs2.comment,
-                      (rs1.status || rs2.status));
+  const auto conjunction = "; OR ";
+  auto comment =
+      ReturnStatus::join_comments(conjunction, rs1.comment, rs2.comment);
+  return ReturnStatus(std::move(comment), (rs1.status || rs2.status));
 }
 
 /** @brief Data structure for information describing contract violations. */
