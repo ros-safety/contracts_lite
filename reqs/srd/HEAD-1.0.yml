@@ -1,0 +1,12 @@
+active: true
+derived: false
+header: ''
+level: 1.0
+links: []
+normative: false
+ref: ''
+reviewed: kBEE5_ZHAHzfqraB6Z0qHg2N5kgyx4qHMDg4xJf_ve4=
+text: |
+  Contracts Lite
+
+  Provide standard practice and tooling to support the explicit definition and enforcement of function contracts. The requirements derived for this library are a subset of those specified for the C++20 contracts proposal here: [http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0542r5.html)

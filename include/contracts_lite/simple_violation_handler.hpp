@@ -12,6 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * @file simple_violation_handler.hpp
+ * @implements{SRD005}
+ */
+
 #ifndef CONTRACTS__SIMPLE_VIOLATION_HANDLER_HPP_
 #define CONTRACTS__SIMPLE_VIOLATION_HANDLER_HPP_
 
