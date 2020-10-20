@@ -1,0 +1,17 @@
+active: true
+derived: false
+header: |
+  Custom violation handling
+level: 1.1
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD001
+  path: README.md
+  type: file
+reviewed: It5QBrjW-zkQzyMPOGVpGw4DVit3yOVVkHwlHHIFfPQ=
+text: |
+  The contracts library _shall_ provide a mechanism to enable user-defined violation handling.
+
+  A user-defined handler allows users the ability to do custom logging or analysis of violations when they occur.

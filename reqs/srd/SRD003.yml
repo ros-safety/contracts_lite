@@ -1,0 +1,17 @@
+active: true
+derived: false
+header: |
+  Violation handling build mode
+level: 1.3
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD003
+  path: include/contracts_lite/enforcement.hpp
+  type: file
+reviewed: VC_dWeIwSpsNhPMQGJWgH43KcPy6jGbyQ-33xxcqUPE=
+text: |
+  The contracts library violation handling mechanism _shall_ provide for specifying *build mode* behavior
+
+  The build mode determines the behavior of the handler with respect to whether it performs a contract check or not. With build mode set to `DEFAULT` all contracts enforced at the `DEFUALT` level are checked. With build mode set to `AUDIT` all contracts enforced at either the `DEFAULT` or `AUDIT` levels are checked. With build mode set to `OFF` all contract checks are compiled out.

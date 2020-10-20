@@ -1,0 +1,17 @@
+active: true
+derived: false
+header: |
+  Violation handling continuation mode
+level: 1.2
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD002
+  path: include/contracts_lite/enforcement.hpp
+  type: file
+reviewed: b8A79Vl5fT2b42DWs3OcDQv-2FBI9ljqGzR3ImZZkww=
+text: |
+  The contracts library violation handling mechanism _shall_ provide for specifying *continuation mode* behavior
+
+  The continuation mode determines the behavior of the handler with respect to whether it terminates the process or not. Continuation mode ON allows the process to continue exectuing, while continuation mode OFF requires the invocation of `std::terminate()` upon completion of the handler.

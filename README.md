@@ -11,7 +11,7 @@ The purpose of this package is to provide a standard practice and tooling to sup
 
 # Usage
 
-**Note:** This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor), which allows it to be integrated into a colcon workspace.
+**Note:** This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor).
 
 ## Prerequisites
 
@@ -202,6 +202,8 @@ namespace my_lib
 As a convenience, a simple set of range checks are provided for using in contract enforcement. See [`range_checks.hpp`](include/contracts_lite/range_checks.hpp).
 
 ## User-defined violation handler
+
+*NOTE: implements{SRD001}*
 
 The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type `contracts_lite::ReturnStatus`, and the [`enforcement.hpp`](include/contracts_lite/enforcement.hpp) must be included after that macro is defined. A bare minimum example would be something like:
 

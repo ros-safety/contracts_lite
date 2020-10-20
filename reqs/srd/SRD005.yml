@@ -1,0 +1,17 @@
+active: true
+derived: false
+header: |
+  Pre-defined violation handler
+level: 1.5
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD005
+  path: include/contracts_lite/simple_violation_handler.hpp
+  type: file
+reviewed: wqKhjppyUUT9JaYjIGVNVKNvyJUzEmjXsGX6p2_WB1Q=
+text: |
+  The contracts library _shall_ provide a pre-defined violation handler
+
+  A pre-defined violation handler enables users to immediately begin using contract enforcement without having to defined their own handler.

@@ -31,6 +31,7 @@
 /**
  * @brief Debug string definitions for continuation mode
  * @note INTERNAL USE ONLY
+ * @implements{SRD002}
  */
 #ifdef CONTRACT_VIOLATION_CONTINUATION_MODE_ON
 #define CONTRACT_VIOLATION_CONTINUATION_MODE "ON"
@@ -41,6 +42,7 @@
 /**
  * @brief Debug string definitions for build level
  * @note INTERNAL USE ONLY
+ * @implements{SRD003}
  */
 #ifdef CONTRACT_BUILD_LEVEL_OFF
 #define CONTRACT_BUILD_LEVEL "OFF"
@@ -77,7 +79,10 @@
     }                                                      \
   }
 
-/** @brief enforcement Macros that enforce contracts based on build level. */
+/**
+ * @brief enforcement Macros that enforce contracts based on build level.
+ * @implements{SRD004}
+ */
 #ifdef CONTRACT_BUILD_LEVEL_OFF
 #define AUDIT_ENFORCE(contract_check)
 #define DEFAULT_ENFORCE(contract_check)
