@@ -71,13 +71,15 @@ The choice of which handler to use is made at build time by selecting the contra
 > Note: Continuation mode 'on' is only intended for testing and debugging purposes, for example, writing unit tests to verify contract enforcement, or to verify contract-enforced library behavior.
 In normal usage, continuation mode should typically be 'off'.
 
-Finally, it may be the case that verifying contract conditions is undesirable or impractical to do under normal operating conditions, but is desirable under testing conditions.
+Finally, it may be the case that verifying contract conditions is undesirable or impractical to do under normal operating conditions, but is desirable under extended testing conditions.
 This can happen when testing the contract is computationally expensive compared to the evaluation of the function itself.
-So we would like to distinguish between contracts that should always be enforced and those that should only be enforced during a system audit.
+So we would like to distinguish between contracts that should be enforced at all times and those that should only be enforced during such extended testing.
 To distinguish these cases, there are two build levels that define contract enforcement:
 
 - **build level default**: Contracts enforced at the default level are always checked when contracts are enabled.
 - **build level audit**: Contracts enforced at the audit level are only checked when contracts are enabled and the build level is set to `audit`.
+
+_NOTE: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification._
 
 ## Inputs / Outputs / API
 
