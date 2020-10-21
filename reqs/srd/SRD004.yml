@@ -10,8 +10,10 @@ references:
 - keyword: SRD004
   path: include/contracts_lite/enforcement.hpp
   type: file
-reviewed: lxvURN6_ps2Z9N9zVSXTDpBWqa1E6hSmVGhAhmadh9c=
+reviewed: Vu3GKsAl9Q-h9Ma0-09FyZWQlumybdSEAoJCupPXezw=
 text: |
-  The contracts library _shall_ provide `DEFAULT`, `AUDIT`, and `OFF` enforcement mechanisms.
+  The contracts library _shall_ provide `DEFAULT`, `AUDIT`, and `OFF` enforcement levels.
 
-  The `DEFAULT` enforcement level is intended to be used for contract enforcement that is intended to always run. The `AUDIT` level is intended for checks that are only intended to run offline or during some kind of system testing or audit (these tend to be resource intensive in ways that prohibit them from running during normal operation). The `OFF` enforcement level removes all checks from the compiled code.
+  The `OFF` enforcement level removes all checks from the compiled code. The `DEFAULT` enforcement level is intended to be used for contract enforcement that is intended to always run. The `AUDIT` level is intended for checks that are only run during extended testing and not run during normal operation.
+
+  NOTE: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification.
