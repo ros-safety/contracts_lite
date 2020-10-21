@@ -59,24 +59,23 @@
  * available.
  * @note INTERNAL USE ONLY
  */
-#define CONTRACT_VIOLATION(comment)                      \
-  ::contracts_lite::ContractViolation(                   \
-      static_cast<uint_least32_t>(__LINE__), (comment),  \
-      std::string(CONTRACT_BUILD_LEVEL),                 \
-      std::string(CONTRACT_VIOLATION_CONTINUATION_MODE), \
+#define CONTRACT_VIOLATION(comment)                              \
+  ::contracts_lite::ContractViolation(                           \
+      static_cast<uint_least32_t>(__LINE__), std::move(comment), \
+      std::string(CONTRACT_BUILD_LEVEL),                         \
+      std::string(CONTRACT_VIOLATION_CONTINUATION_MODE),         \
       std::string(__FILE__), std::string(__func__))
 
 /**
  * @brief Invokes violation handler if contract_check arg evaluates to `true`
  * @note INTERNAL USE ONLY
  */
-#define ENFORCE_CONTRACT(contract_check)                   \
-  {                                                        \
-    ::contracts_lite::ReturnStatus check = contract_check; \
-    if (!check.status) {                                   \
-      CONTRACT_VIOLATION_HANDLER(                          \
-          CONTRACT_VIOLATION(std::move(check.comment)));   \
-    }                                                      \
+#define ENFORCE_CONTRACT(contract_check)                             \
+  {                                                                  \
+    ::contracts_lite::ReturnStatus check = contract_check;           \
+    if (!check.status) {                                             \
+      CONTRACT_VIOLATION_HANDLER(CONTRACT_VIOLATION(check.comment)); \
+    }                                                                \
   }
 
 /**
