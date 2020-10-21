@@ -41,7 +41,7 @@
 <p>The contracts library <em>shall</em> provide a mechanism to enable user-defined violation handling.</p>
 <p>A user-defined handler allows users the ability to do custom logging or analysis of violations when they occur.</p>
 <blockquote>
-<p><code>README.md</code> (line 206)</p>
+<p><code>README.md</code> (line 208)</p>
 </blockquote>
 <hr />
 </section><section class="section2" id="SRD002"><h2>1.2 Violation handling continuation mode <small>SRD002</small></h2>
@@ -53,14 +53,15 @@
 <hr />
 </section><section class="section2" id="SRD003"><h2>1.3 Violation handling build mode <small>SRD003</small></h2>
 <p>The contracts library violation handling mechanism <em>shall</em> provide for specifying <em>build mode</em> behavior</p>
-<p>The build mode determines the behavior of the handler with respect to whether it performs a contract check or not. With build mode set to <code>DEFAULT</code> all contracts enforced at the <code>DEFUALT</code> level are checked. With build mode set to <code>AUDIT</code> all contracts enforced at either the <code>DEFAULT</code> or <code>AUDIT</code> levels are checked. With build mode set to <code>OFF</code> all contract checks are compiled out.</p>
+<p>The build mode sets the contract enforcement level at compile time. See SRD004 for description of enforcement levels.</p>
 <blockquote>
 <p><code>include/contracts_lite/enforcement.hpp</code> (line 45)</p>
 </blockquote>
 <hr />
 </section><section class="section2" id="SRD004"><h2>1.4 Contract enforcement level <small>SRD004</small></h2>
-<p>The contracts library <em>shall</em> provide <code>DEFAULT</code>, <code>AUDIT</code>, and <code>OFF</code> enforcement mechanisms.</p>
-<p>The <code>DEFAULT</code> enforcement level is intended to be used for contract enforcement that is intended to always run. The <code>AUDIT</code> level is intended for checks that are only intended to run offline or during some kind of system testing or audit (these tend to be resource intensive in ways that prohibit them from running during normal operation). The <code>OFF</code> enforcement level removes all checks from the compiled code.</p>
+<p>The contracts library <em>shall</em> provide <code>DEFAULT</code>, <code>AUDIT</code>, and <code>OFF</code> enforcement levels.</p>
+<p>The <code>OFF</code> enforcement level removes all checks from the compiled code. The <code>DEFAULT</code> enforcement level is intended to be used for contract enforcement that is intended to always run. The <code>AUDIT</code> level is intended for checks that are only run during extended testing and not run during normal operation.</p>
+<p>NOTE: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification.</p>
 <blockquote>
 <p><code>include/contracts_lite/enforcement.hpp</code> (line 84)</p>
 </blockquote>

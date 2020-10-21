@@ -10,7 +10,7 @@ references:
 - keyword: SRD004
   path: include/contracts_lite/enforcement.hpp
   type: file
-reviewed: lxvURN6_ps2Z9N9zVSXTDpBWqa1E6hSmVGhAhmadh9c=
+reviewed: Vu3GKsAl9Q-h9Ma0-09FyZWQlumybdSEAoJCupPXezw=
 text: |
   The contracts library _shall_ provide `DEFAULT`, `AUDIT`, and `OFF` enforcement levels.
 

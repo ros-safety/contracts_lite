@@ -10,7 +10,7 @@ references:
 - keyword: SRD003
   path: include/contracts_lite/enforcement.hpp
   type: file
-reviewed: VC_dWeIwSpsNhPMQGJWgH43KcPy6jGbyQ-33xxcqUPE=
+reviewed: -gVJ0RPVwngBmuZ0nBP0JDP5o0GaABFBnFBMX6LqV-I=
 text: |
   The contracts library violation handling mechanism _shall_ provide for specifying *build mode* behavior
 
