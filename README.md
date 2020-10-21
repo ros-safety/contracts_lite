@@ -11,7 +11,7 @@ The purpose of this package is to provide a standard practice and tooling to sup
 
 # Usage
 
-**Note:** This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor).
+> Note: This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor).
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ cmake ..
 make install
 ```
 
-**Note:** The last command may require super-user privileges i.e. `sudo`.
+> Note: The last command may require super-user privileges i.e. `sudo`.
 
 If you wish to build the tests or the example, you can add the `-DBUILD_TESTING` or `-DBUILD_EXAMPLES` flags, respectively:
 
@@ -79,7 +79,7 @@ To distinguish these cases, there are two build levels that define contract enfo
 - **build level default**: Contracts enforced at the default level are always checked when contracts are enabled.
 - **build level audit**: Contracts enforced at the audit level are only checked when contracts are enabled and the build level is set to `audit`.
 
-_NOTE: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification._
+> Note: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification.
 
 ## Inputs / Outputs / API
 
@@ -106,7 +106,7 @@ Two enforcement macros are provided to allow enforcement at the 'default' and 'a
 - `DEFAULT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 - `AUDIT_ENFORCE(ReturnStatus)`: invokes violation handler if ReturnStatus arg is `false`
 
-> NOTE: The macros should be treated as if they assume ownership of The `ReturnStatus` argument. For this reason, the argument needs to be either an rvalue or a non-const lvalue.
+> Note: The macros should be treated as if they assume ownership of The `ReturnStatus` argument. For this reason, the argument needs to be either an rvalue or a non-const lvalue.
 
 When writing functions that check contract conditions, the comment field of the ReturnStatus object can be used to describe the specific conditions of failure (e.g. what value resulted in a failed check).
 It is often desirable to make these comments informative by adding specific run time information to them.
@@ -205,7 +205,7 @@ As a convenience, a simple set of range checks are provided for using in contrac
 
 ## User-defined violation handler
 
-*NOTE: implements{SRD001}*
+> Note: implements{SRD001}
 
 The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type `contracts_lite::ReturnStatus`, and the [`enforcement.hpp`](include/contracts_lite/enforcement.hpp) must be included after that macro is defined. A bare minimum example would be something like:
 
