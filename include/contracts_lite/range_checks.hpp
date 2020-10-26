@@ -15,6 +15,8 @@
 #ifndef CONTRACTS__RANGE_CHECKS_HPP_
 #define CONTRACTS__RANGE_CHECKS_HPP_
 
+#include <utility>
+
 #include "contracts_lite/contract_types.hpp"
 
 namespace contracts_lite {
