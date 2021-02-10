@@ -40,13 +40,7 @@ make
 make install
 ```
 
-The easiest way to run all of the tests on Linux is with a script similar to the following:
-
-```console
-for exec in $(find . -executable -type f -name 'test*'); do $exec; done
-```
-
-For convenience, this script is provided as `run_tests.sh` in the repo root.
+The easiest way to run all of the tests on Linux is with the included `run_tests.sh` script located in the repo root.
 
 # Design
 
