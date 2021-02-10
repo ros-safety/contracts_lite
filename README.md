@@ -9,6 +9,9 @@ This is the design document for the `contracts` package.
 
 The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts.
 
+For convenience, a set of basic contract enforcement data types is also defined.
+See [TYPES.md](TYPES.md).
+
 # Usage
 
 > Note: This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor).
