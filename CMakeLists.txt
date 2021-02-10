@@ -29,10 +29,8 @@ endif()
 set(HEADER_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/acute_degree.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/acute_radian.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/assertions.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/nonnegative_real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/real.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/scalar_flicker.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/size_bound.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/strictly_positive_real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/operators.hpp
@@ -81,11 +79,9 @@ if(BUILD_TESTING)
   add_executable(test_${PROJECT_NAME}_types
     test/test_acute_degree.cpp
     test/test_acute_radian.cpp
-    test/test_assertions.cpp
     test/test_dimensional_analysis.cpp
     test/test_nonnegative_real.cpp
     test/test_real.cpp
-    test/test_scalar_flicker.cpp
     test/test_size_bound.cpp
     test/test_strictly_positive_real.cpp)
   target_compile_definitions(test_${PROJECT_NAME}_types PRIVATE ${BUILD_DEFINITIONS})

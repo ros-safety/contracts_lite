@@ -32,7 +32,7 @@ namespace contracts_lite {
  * @invariant The float value of these objects is guaranteed to be valid upon
  * successful construction.
  *
- * @implements{SRD007}
+ * @implements{SRD006}
  */
 template <typename T>
 class NonnegativeReal {

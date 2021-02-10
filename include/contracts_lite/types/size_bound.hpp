@@ -31,7 +31,7 @@ namespace contracts_lite {
  * @invariant The value of these objects is guaranteed to be valid upon
  * successful construction.
  *
- * @implements{SRD007}
+ * @implements{SRD006}
  */
 template <size_t BOUND>
 class SizeBound {
