@@ -1,0 +1,15 @@
+active: true
+derived: false
+header: |
+  Flicker detection
+level: 1.8.0
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD008
+  path: include/contracts_lite/types/assertions.hpp
+  type: file
+reviewed: E_oQlKi0RIh1le2GA4bEBDiuH8UL2AAfmqB-3JA0z90=
+text: |
+  **The contracts system _shall_ provide a mechanism for asserting that a `std::vector` is below capacity.**

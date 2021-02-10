@@ -38,6 +38,8 @@ class AcuteDegree;
  *
  * @invariant The float value of these objects is guaranteed to be valid upon
  * successful construction.
+ *
+ * @implements{SRD007}
  */
 template <typename T>
 class AcuteRadian {

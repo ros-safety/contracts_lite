@@ -1,0 +1,15 @@
+active: true
+derived: false
+header: |
+  Flicker detection
+level: 1.6.0
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD006
+  path: include/contracts_lite/types/scalar_flicker.hpp
+  type: file
+reviewed: G-rxUuvRSjhcogPse0CioLIvFTjBA8Jz8kXX6qQSDa0=
+text: |
+  **The contracts system _shall_ provide a mechanism for enforcing bounds on the magnitude of flicker on a scalar-valued time series.**

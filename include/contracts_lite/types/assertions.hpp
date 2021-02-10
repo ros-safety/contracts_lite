@@ -26,7 +26,11 @@
 namespace contracts_lite {
 namespace assertions {
 
-/** @brief Enforce that a vector object is below capacity. */
+/**
+ * @brief Enforce that a vector object is below capacity.
+ *
+ * @implements{SRD008}
+ */
 template <typename T>
 contracts_lite::ReturnStatus vector_below_capacity(const std::vector<T>& v) {
   const auto below_capacity = (v.size() < v.capacity());

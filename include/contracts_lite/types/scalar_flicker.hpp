@@ -32,6 +32,8 @@ namespace contracts_lite {
 /**
  * @brief convenience container for peak indices.
  * @note The class is templated with respect to the array type it indexes into.
+ *
+ * @implements{SRD006}
  */
 template <typename T, size_t S>
 class PeakIndex {
