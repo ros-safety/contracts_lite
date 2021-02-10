@@ -27,7 +27,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 set(HEADER_FILES
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/contract_types.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/operators.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/enforcement.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/range_checks.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/simple_violation_handler.hpp

@@ -17,7 +17,7 @@
 
 #include <utility>
 
-#include "contracts_lite/contract_types.hpp"
+#include "contracts_lite/operators.hpp"
 
 namespace contracts_lite {
 namespace range_checks {
