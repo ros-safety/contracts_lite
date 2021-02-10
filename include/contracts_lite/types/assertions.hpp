@@ -14,7 +14,7 @@
 
 /// \copyright Copyright 2020 The Autoware Foundation
 /// \file
-/// \brief This file defines the autoware_auto_contracts real type.
+/// \brief This file defines vector assertions.
 
 #ifndef CONTRACTS__ASSERTIONS_HPP_
 #define CONTRACTS__ASSERTIONS_HPP_
