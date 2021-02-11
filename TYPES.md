@@ -133,8 +133,8 @@ Real<float> foo(Real<float> base, Real<float> step) {
 }
 ```
 
-Also be aware that using the `AUDIT` build level (see [Error detection and handling](#error-detection-and-handling)) can significantly impact performance.
-This is because verbose comment message are generated each time a contract is checked.
+Also be aware that using the `AUDIT` build level can significantly impact performance.
+This is because verbose comment message are generated each time a contract is checked (see [Contracts Lite](README.md)).
 
 ## Error detection and handling
 
