@@ -26,7 +26,7 @@
 #include <string>
 #include <utility>
 
-#include "contracts_lite/contract_types.hpp"
+#include "contracts_lite/operators.hpp"
 
 /**
  * @brief Debug string definitions for continuation mode

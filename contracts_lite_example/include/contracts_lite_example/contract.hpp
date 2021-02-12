@@ -19,7 +19,7 @@
 #include <array>
 #include <type_traits>
 
-#include "contracts_lite/contract_types.hpp"
+#include "contracts_lite/operators.hpp"
 
 /**
  * @brief This include is the violation handler.

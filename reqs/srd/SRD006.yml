@@ -1,0 +1,30 @@
+active: true
+derived: false
+header: |
+  Type-based enforcement
+level: 1.6.0
+links: []
+normative: true
+ref: ''
+references:
+- keyword: SRD006
+  path: include/contracts_lite/types/acute_degree.hpp
+  type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/acute_radian.hpp
+  type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/nonnegative_real.hpp
+  type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/real.hpp
+  type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/size_bound.hpp
+  type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/strictly_positive_real.hpp
+  type: file
+reviewed: n53yFdcjlh6JQpNamMlEkV4ChMLteLeHlw0AwPINzm8=
+text: |
+  **The contracts system _shall_ provide a programmatic method for enforcing parameter type and range requirements at run time.**

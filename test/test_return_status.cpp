@@ -15,7 +15,7 @@
 #include <limits>
 #include <string>
 
-#include "contracts_lite/contract_types.hpp"
+#include "contracts_lite/operators.hpp"
 #include "gtest/gtest.h"
 
 TEST(Contracts_Lite, ReturnStatus) {

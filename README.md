@@ -9,6 +9,9 @@ This is the design document for the `contracts` package.
 
 The purpose of this package is to provide a standard practice and tooling to support the explicit definition and enforcement of function contracts.
 
+For convenience, a set of basic contract enforcement data types is also defined.
+See [TYPES.md](TYPES.md).
+
 # Usage
 
 > Note: This project can be used in ROS 2 via the [vendor package](https://github.com/ros-safety/contracts_lite_vendor).
@@ -40,13 +43,7 @@ make
 make install
 ```
 
-The easiest way to run all of the tests on Linux is with a script similar to the following:
-
-```console
-for exec in $(find . -executable -type f -name 'test*'); do $exec; done
-```
-
-For convenience, this script is provided as `run_tests.sh` in the repo root.
+The easiest way to run all of the tests on Linux is with the included `run_tests.sh` script located in the repo root.
 
 # Design
 
@@ -113,7 +110,7 @@ It is often desirable to make these comments informative by adding specific run 
 Doing this, however, can be computationally expensive, which may be unacceptable for default-enforced contracts under default enforcement, but acceptable for default-enforced contracts under audit enforcement.
 For this reason, an additional macro is provided that allows the user to specify at compile time what the comment string should be for default and audit enforcement. For example:
 
-```
+```c++
 auto comment = CONTRACT_COMMENT(
   "comment for default enforcement",
   "comment for audit enforcement with expensive run-time info: " + std::to_string(foo(bar)));
@@ -128,7 +125,7 @@ That package contains minimal example library, its contract, and unit tests show
 
 Consider a library:
 
-```
+```c++
 namespace my_lib
 {
 
@@ -145,7 +142,7 @@ namespace my_lib
 
 The contract library for `my_func` would be defined as:
 
-```
+```c++
 namespace my_lib
 {
 namespace contract
@@ -167,7 +164,7 @@ namespace postconditions
 
 In the definition of `my_lib`, the contract is enforced using macros provided by this library:
 
-```
+```c++
 namespace my_lib
 {
 
@@ -209,7 +206,7 @@ As a convenience, a simple set of range checks are provided for using in contrac
 
 The user is free to define arbitrary custom violation handlers. To do so, the `CONTRACT_VIOLATION_HANDLER` macro must be defined to take an argument of type `contracts_lite::ReturnStatus`, and the [`enforcement.hpp`](include/contracts_lite/enforcement.hpp) must be included after that macro is defined. A bare minimum example would be something like:
 
-```
+```c++
 #define CONTRACT_VIOLATION_HANDLER(violation) std::terminate()
 
 #include "contracts/enforcement.hpp"
@@ -217,7 +214,7 @@ The user is free to define arbitrary custom violation handlers. To do so, the `C
 
 To properly handle different continuation modes, a handler might look something like:
 
-```
+```c++
 #ifdef CONTRACT_VIOLATION_CONTINUATION_MODE_ON
 #define CONTRACT_VIOLATION_HANDLER(violation) throw std::runtime_error("CONTRACT VIOLATION!: " + violation.string());
 #else
