@@ -56,10 +56,10 @@ class NonzeroReal {
   NonzeroReal(T r) : r_(r) {
     const auto in_lower_range =
         contracts_lite::range_checks::in_range_open_open(
-            r_, -std::numeric_limits<T>::infinity(), 0.0f);
+            r_, -std::numeric_limits<T>::infinity(), static_cast<T>(0));
     const auto in_upper_range =
         contracts_lite::range_checks::in_range_open_open(
-            r_, 0.0f, std::numeric_limits<T>::infinity());
+            r_, static_cast<T>(0), std::numeric_limits<T>::infinity());
     DEFAULT_ENFORCE(in_lower_range || in_upper_range);
   }
 
