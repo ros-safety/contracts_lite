@@ -6,7 +6,7 @@ This package provides data types for use in contract enforcement that can act as
 The provided data types can be used to perform per-parameter contract enforcement on input/output parameters.
 In addition, the types can be used to perform basic dimensional analysis.
 
-For a complete list of available types, see the [types](types) directory.
+For a complete list of available types, see the [types](include/contracts_lite/types) directory.
 
 These types were originally defined in [merge request 695](https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto/-/merge_requests/695) for use in the [Autoware.Auto](https://www.autoware.auto/) project.
 
