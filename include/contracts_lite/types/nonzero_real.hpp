@@ -29,8 +29,7 @@ namespace contracts_lite {
 /**
  * @brief Container for non-zero reals.
  *
- * @note A non-zero real is 'valid' if and only if it is in (-inf, 0) \cup (0,
- * inf).
+ * @note A non-zero real is 'valid' iff it is in (-inf, 0) \cup (0, inf).
  *
  * @invariant The float value of these objects is guaranteed to be valid upon
  * successful construction.
