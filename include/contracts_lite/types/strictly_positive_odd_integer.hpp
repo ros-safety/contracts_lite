@@ -38,6 +38,10 @@ namespace contracts_lite {
  * @note A strictly positive odd integer is 'valid' if and only if it is in (0,
  * Inf) and it is congruent to 1(mod 2).
  *
+ * @note Signed types are permitted to allow the check to fail on invalid input;
+ * otherwise a negative value in a signed type might be cast to a postive value
+ * in an unsigned type.
+ *
  * @invariant The value of these objects is guaranteed to be valid upon
  * successful construction.
  *
@@ -45,8 +49,8 @@ namespace contracts_lite {
  */
 template <typename T>
 class StrictlyPositiveOddInteger {
-  static_assert(std::is_integral<T>::value && std::is_unsigned<T>::value,
-                "StrictlyPositiveOddInteger types must be unsigned integrals.");
+  static_assert(std::is_integral<T>::value,
+                "StrictlyPositiveOddInteger types must be integral.");
 
  public:
   StrictlyPositiveOddInteger() = delete;

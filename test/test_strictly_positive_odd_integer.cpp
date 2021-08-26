@@ -32,6 +32,10 @@ namespace c = contracts_lite;
 //------------------------------------------------------------------------------
 
 TEST(Contract_Types, StrictlyPositiveOddInteger) {
+  EXPECT_THROW({ c::StrictlyPositiveOddInteger<int> s{0}; },
+               std::runtime_error);
+  EXPECT_THROW({ c::StrictlyPositiveOddInteger<int> s{2}; },
+               std::runtime_error);
   EXPECT_THROW({ c::StrictlyPositiveOddInteger<unsigned int> s{2}; },
                std::runtime_error);
   EXPECT_THROW(
@@ -46,6 +50,16 @@ TEST(Contract_Types, StrictlyPositiveOddInteger) {
         s = 2;
       },
       std::runtime_error);
+  EXPECT_THROW(
+      {
+        c::StrictlyPositiveOddInteger<int> s{1};
+        s = 2;
+      },
+      std::runtime_error);
+  EXPECT_NO_THROW({
+    c::StrictlyPositiveOddInteger<int> s{1};
+    s = 5;
+  });
   EXPECT_NO_THROW({
     c::StrictlyPositiveOddInteger<size_t> s{1};
     s = 5;
