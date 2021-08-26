@@ -25,6 +25,9 @@ references:
 - keyword: SRD006
   path: include/contracts_lite/types/strictly_positive_real.hpp
   type: file
+- keyword: SRD006
+  path: include/contracts_lite/types/strictly_positive_odd_integer.hpp
+  type: file
 reviewed: n53yFdcjlh6JQpNamMlEkV4ChMLteLeHlw0AwPINzm8=
 text: |
   **The contracts system _shall_ provide a programmatic method for enforcing parameter type and range requirements at run time.**
