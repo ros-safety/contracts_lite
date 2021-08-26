@@ -28,6 +28,7 @@
 <li><a href="#SRD003">1.3 Violation handling build mode</a></li>
 <li><a href="#SRD004">1.4 Contract enforcement level</a></li>
 <li><a href="#SRD005">1.5 Pre-defined violation handler</a></li>
+<li><a href="#SRD006">1.6 Type-based enforcement</a></li>
 </ul>
 </li>
 </ul>
@@ -41,7 +42,7 @@
 <p>The contracts library <em>shall</em> provide a mechanism to enable user-defined violation handling.</p>
 <p>A user-defined handler allows users the ability to do custom logging or analysis of violations when they occur.</p>
 <blockquote>
-<p><code>README.md</code> (line 208)</p>
+<p><code>README.md</code> (line 205)</p>
 </blockquote>
 <hr />
 </section><section class="section2" id="SRD002"><h2>1.2 Violation handling continuation mode <small>SRD002</small></h2>
@@ -63,7 +64,7 @@
 <p>The <code>OFF</code> enforcement level removes all checks from the compiled code. The <code>DEFAULT</code> enforcement level is intended to be used for contract enforcement that is intended to always run. The <code>AUDIT</code> level is intended for checks that are only run during extended testing and not run during normal operation.</p>
 <p>NOTE: The term 'audit', used here in the context of contract enforcement, refers strictly to extended testing scenarios and is separate and distinct from the use of the term in the context of standards certification.</p>
 <blockquote>
-<p><code>include/contracts_lite/enforcement.hpp</code> (line 84)</p>
+<p><code>include/contracts_lite/enforcement.hpp</code> (line 83)</p>
 </blockquote>
 <hr />
 </section><section class="section2" id="SRD005"><h2>1.5 Pre-defined violation handler <small>SRD005</small></h2>
@@ -71,6 +72,18 @@
 <p>A pre-defined violation handler enables users to immediately begin using contract enforcement without having to defined their own handler.</p>
 <blockquote>
 <p><code>include/contracts_lite/simple_violation_handler.hpp</code> (line 17)</p>
+</blockquote>
+<hr />
+</section><section class="section2" id="SRD006"><h2>1.6 Type-based enforcement <small>SRD006</small></h2>
+<p><strong>The contracts system <em>shall</em> provide a programmatic method for enforcing parameter type and range requirements at run time.</strong></p>
+<blockquote>
+<p><code>include/contracts_lite/types/acute_degree.hpp</code> (line 42)
+<code>include/contracts_lite/types/acute_radian.hpp</code> (line 42)
+<code>include/contracts_lite/types/nonnegative_real.hpp</code> (line 35)
+<code>include/contracts_lite/types/real.hpp</code> (line 35)
+<code>include/contracts_lite/types/size_bound.hpp</code> (line 34)
+<code>include/contracts_lite/types/strictly_positive_real.hpp</code> (line 35)
+<code>include/contracts_lite/types/strictly_positive_odd_integer.hpp</code> (line 44)</p>
 </blockquote>
 <hr />
 </section></section>

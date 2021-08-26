@@ -34,6 +34,7 @@ set(HEADER_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/size_bound.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/strictly_positive_real.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/strictly_positive_odd_integer.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/operators.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/enforcement.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/range_checks.hpp
@@ -85,7 +86,8 @@ if(BUILD_TESTING)
     test/test_nonzero_real.cpp
     test/test_real.cpp
     test/test_size_bound.cpp
-    test/test_strictly_positive_real.cpp)
+    test/test_strictly_positive_real.cpp
+    test/test_strictly_positive_odd_integer.cpp)
   target_compile_definitions(test_${PROJECT_NAME}_types PRIVATE ${BUILD_DEFINITIONS})
   target_link_libraries(test_${PROJECT_NAME}_types ${PROJECT_NAME} GTest::GTest GTest::Main)
   gtest_discover_tests(test_${PROJECT_NAME}_types)
