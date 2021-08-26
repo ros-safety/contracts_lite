@@ -2,7 +2,7 @@ active: true
 derived: false
 header: |
   Type-based enforcement
-level: 1.6.0
+level: 1.6
 links: []
 normative: true
 ref: ''
