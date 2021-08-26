@@ -47,7 +47,7 @@ TEST(Contract_Types, StrictlyPositiveOddInteger) {
       },
       std::runtime_error);
   EXPECT_NO_THROW({
-    c::StrictlyPositiveOddInteger<unsigned> s{1};
+    c::StrictlyPositiveOddInteger<size_t> s{1};
     s = 5;
   });
 }
