@@ -68,6 +68,7 @@ TEST(Contract_Types, StrictlyPositiveOddInteger) {
   typedef c::StrictlyPositiveOddInteger<int, 5> test_type;
   EXPECT_THROW({ test_type s{3}; }, std::runtime_error);
   EXPECT_NO_THROW({ test_type s{5}; });
+  EXPECT_NO_THROW({ test_type s{7}; });
 
 #if 0
   { c::StrictlyPositiveOddInteger<int, -1> this_should_not_compile{1}; }
