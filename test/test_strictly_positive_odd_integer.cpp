@@ -64,6 +64,20 @@ TEST(Contract_Types, StrictlyPositiveOddInteger) {
     c::StrictlyPositiveOddInteger<size_t> s{1};
     s = 5;
   });
+
+  typedef c::StrictlyPositiveOddInteger<int, 5> test_type;
+  EXPECT_THROW({ test_type s{3}; }, std::runtime_error);
+  EXPECT_NO_THROW({ test_type s{5}; });
+
+#if 0
+  { c::StrictlyPositiveOddInteger<int, -1> this_should_not_compile{1}; }
+#endif
+#if 0
+  {
+    enum E : int {};
+    c::StrictlyPositiveOddInteger<E> this_should_not_compile{static_cast<E>(1)};
+  }
+#endif
 }
 
 //------------------------------------------------------------------------------
