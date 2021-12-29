@@ -47,10 +47,13 @@ namespace contracts_lite {
  *
  * @implements{SRD006}
  */
-template <typename T>
+template <typename T, T Min = static_cast<T>(1)>
 class StrictlyPositiveOddInteger {
   static_assert(std::is_integral<T>::value,
-                "StrictlyPositiveOddInteger types must be integral.");
+                "StrictlyPositiveOddInteger given non-integral type.");
+  static_assert(
+      Min > static_cast<T>(0),
+      "StrictlyPositiveOddInteger given minimum value not greater than 0.");
 
  public:
   StrictlyPositiveOddInteger() = delete;
@@ -67,11 +70,15 @@ class StrictlyPositiveOddInteger {
   StrictlyPositiveOddInteger(T r) : r_(r) {
     DEFAULT_ENFORCE([&]() {
       const auto is_strictly_positive = (r > static_cast<T>(0));
+      const auto is_not_less_than_min = (r >= Min);
       const auto is_odd = static_cast<bool>(r & static_cast<T>(1));
       auto comment = CONTRACT_COMMENT(
-          "", gcc_7x_to_string_fix(r) + " must be strictly positive and odd.");
-      return contracts_lite::ReturnStatus(std::move(comment),
-                                          (is_strictly_positive && is_odd));
+          "", gcc_7x_to_string_fix(r) +
+                  " must be strictly positive, odd, and greater than " +
+                  gcc_7x_to_string_fix(Min) + ".");
+      return contracts_lite::ReturnStatus(
+          std::move(comment),
+          (is_strictly_positive && is_odd && is_not_less_than_min));
     }());
   }
 
