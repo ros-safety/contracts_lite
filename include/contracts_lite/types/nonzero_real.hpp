@@ -14,13 +14,12 @@
 
 /// \copyright Copyright 2021 Mapless AI, Inc.
 /// \file
-/// \brief This file defines the non-negative real type.
+/// \brief This file defines the non-zero real type.
 
 #ifndef CONTRACTS__NONZERO_REAL_H_
 #define CONTRACTS__NONZERO_REAL_H_
 
 #include <limits>
-#include <type_traits>
 
 #include <contracts_lite/range_checks.hpp>
 #include <contracts_lite/simple_violation_handler.hpp>
