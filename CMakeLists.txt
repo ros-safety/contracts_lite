@@ -31,6 +31,7 @@ set(HEADER_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/acute_radian.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/nonnegative_real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/nonzero_real.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/unit_real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/real.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/size_bound.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/contracts_lite/types/strictly_positive_real.hpp
@@ -84,6 +85,7 @@ if(BUILD_TESTING)
     test/test_dimensional_analysis.cpp
     test/test_nonnegative_real.cpp
     test/test_nonzero_real.cpp
+    test/test_unit_real.cpp
     test/test_real.cpp
     test/test_size_bound.cpp
     test/test_strictly_positive_real.cpp
