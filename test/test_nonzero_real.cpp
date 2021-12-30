@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// \copyright Copyright 2021 Mapless AI, Inc.
-/// \file
-/// \brief This file defines the non-negative real type.
-
 #include <limits>
 
 #include "contracts_lite/simple_violation_handler.hpp"

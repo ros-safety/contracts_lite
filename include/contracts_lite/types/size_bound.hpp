@@ -14,8 +14,7 @@
 
 /// \copyright Copyright 2020 The Autoware Foundation
 /// \file
-/// \brief This file defines the size bound
-/// type.
+/// \brief This file defines the size bound type.
 
 #ifndef CONTRACTS__SIZE_BOUND_HPP_
 #define CONTRACTS__SIZE_BOUND_HPP_
