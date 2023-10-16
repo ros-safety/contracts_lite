@@ -21,7 +21,15 @@ function(build_level_targets BUILD_LEVEL MODE)
   )
 
   enable_testing()
-  find_package(GTest REQUIRED)
+  #find_package(GTest REQUIRED)
+  include(FetchContent)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  )
+  # For Windows: Prevent overriding the parent project's compiler/linker settings
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  FetchContent_MakeAvailable(googletest)
   include(GoogleTest)
 
   # Define example libraries
@@ -33,7 +41,7 @@ function(build_level_targets BUILD_LEVEL MODE)
   set(TEST_EXE test_${PROJECT_NAME}_example${TARGET_SUFFIX})
   add_executable(${TEST_EXE} test/test_contracts_example${TARGET_SUFFIX}.cpp)
   target_compile_definitions(${TEST_EXE} PRIVATE ${BUILD_DEFINITIONS})
-  target_link_libraries(${TEST_EXE} example${TARGET_SUFFIX} GTest::GTest GTest::Main)
+  target_link_libraries(${TEST_EXE} example${TARGET_SUFFIX} GTest::gtest_main)
   gtest_discover_tests(${TEST_EXE})
 endfunction()
 
