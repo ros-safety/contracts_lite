@@ -19,9 +19,7 @@
 #ifndef CONTRACTS__REAL_HPP_
 #define CONTRACTS__REAL_HPP_
 
-#include <limits>
-
-#include "contracts_lite/range_checks.hpp"
+#include <cmath>
 
 namespace contracts_lite {
 /**
@@ -51,9 +49,11 @@ class Real {
    * @post The class invariant validity condition holds (see invariant in Real).
    */
   Real(T r) : r_(r) {
-    DEFAULT_ENFORCE(contracts_lite::range_checks::in_range_open_open(
-        r_, -std::numeric_limits<T>::infinity(),
-        std::numeric_limits<T>::infinity()));
+    DEFAULT_ENFORCE([&]() {
+      auto comment =
+          CONTRACT_COMMENT("", gcc_7x_to_string_fix(r_) + " must be finite");
+      return ReturnStatus(std::move(comment), std::isfinite(r_));
+    }());
   }
 
  private:

@@ -63,7 +63,14 @@ endif()
 # Testing
 if(BUILD_TESTING)
   enable_testing()
-  find_package(GTest REQUIRED)
+  include(FetchContent)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  )
+  # For Windows: Prevent overriding the parent project's compiler/linker settings
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  FetchContent_MakeAvailable(googletest)
   include(GoogleTest)
 
   # Unit tests
@@ -71,7 +78,7 @@ if(BUILD_TESTING)
     test/test_return_status.cpp
     test/test_range_checks.cpp
     test/test_to_string.cpp)
-  target_link_libraries(test_${PROJECT_NAME} ${PROJECT_NAME} GTest::GTest GTest::Main)
+  target_link_libraries(test_${PROJECT_NAME} ${PROJECT_NAME} GTest::gtest_main)
   gtest_discover_tests(test_${PROJECT_NAME})
 
   set(BUILD_DEFINITIONS
@@ -91,7 +98,7 @@ if(BUILD_TESTING)
     test/test_strictly_positive_real.cpp
     test/test_strictly_positive_odd_integer.cpp)
   target_compile_definitions(test_${PROJECT_NAME}_types PRIVATE ${BUILD_DEFINITIONS})
-  target_link_libraries(test_${PROJECT_NAME}_types ${PROJECT_NAME} GTest::GTest GTest::Main)
+  target_link_libraries(test_${PROJECT_NAME}_types ${PROJECT_NAME} GTest::gtest_main)
   gtest_discover_tests(test_${PROJECT_NAME}_types)
 endif()
 
